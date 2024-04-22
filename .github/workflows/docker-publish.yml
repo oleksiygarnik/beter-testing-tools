@@ -3,7 +3,6 @@ name: Docker Image CI Pipeline for Emulator and Generator
 on:
   workflow_dispatch:
   push:
-    branches: [ 'main' ]
     tags: [ 'v*.*.*' ]
 
 jobs:
@@ -40,6 +39,9 @@ jobs:
       dockerfile_path: src/Hosts/Beter.TestingTools.Emulator/Dockerfile
       unit_tests_path: tests/Beter.TestingTools.Emulator.UnitTests/Beter.TestingTools.Emulator.UnitTests.csproj
       code_coverage_threshold: 0
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
           
   generator_push_to_registry:
     needs: check-current-branch
@@ -52,4 +54,6 @@ jobs:
       dockerfile_path: src/Hosts/Beter.TestingTools.Generator/Dockerfile
       unit_tests_path: tests/Beter.TestingTools.Generator.UnitTests/Beter.TestingTools.Generator.UnitTests.csproj
       code_coverage_threshold: 0
-      
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
