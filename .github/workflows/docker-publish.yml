@@ -7,7 +7,7 @@ on:
     tags: [ 'v*.*.*' ]
 
 env:
-  REGISTRY: docker.io
+  REGISTRY: 'docker.io'
 
 jobs:
   check-current-branch:
