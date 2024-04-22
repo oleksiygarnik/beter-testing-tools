@@ -32,7 +32,7 @@ jobs:
     needs: check-current-branch
     if: contains(needs.check-current-branch.outputs.branch, 'main')
     name: Emulator
-    uses: oleksiygarnik/beter-testing-tools/.github/workflows/base-docker-publish.yml@main
+    uses: oleksiygarnik/beter-testing-tools-2/.github/workflows/base-docker-publish.yml@main
     with:
       project_name: emulator
       image_name: docker.io/silencerdev/testingtools.emulator
@@ -47,7 +47,7 @@ jobs:
     needs: check-current-branch
     if: contains(needs.check-current-branch.outputs.branch, 'main')
     name: Generator
-    uses: oleksiygarnik/beter-testing-tools/.github/workflows/base-docker-publish.yml@main
+    uses: oleksiygarnik/beter-testing-tools-2/.github/workflows/base-docker-publish.yml@main
     with:
       project_name: generator
       image_name: docker.io/silencerdev/testingtools.generator
