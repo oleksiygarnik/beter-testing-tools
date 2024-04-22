@@ -3,6 +3,7 @@ name: Docker Image CI Pipeline for Emulator and Generator
 on:
   workflow_dispatch:
   push:
+    branches: [ 'main' ]
     tags: [ 'v*.*.*' ]
 
 env:
