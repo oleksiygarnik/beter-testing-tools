@@ -18,6 +18,11 @@ on:
       code_coverage_threshold:
         required: true
         type: number
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_PASSWORD:
+        required: true
 
 jobs:
   push_to_registry:
