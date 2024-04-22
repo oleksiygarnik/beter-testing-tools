@@ -39,7 +39,7 @@ jobs:
     uses: oleksiygarnik/beter-testing-tools-2/.github/workflows/base-docker-publish.yml@main
     with:
       project_name: emulator
-      image_name: "${{ env.REGISTRY }}/silencerdev/testingtools.emulator"
+      image_name: ${{ env.REGISTRY }}/silencerdev/testingtools.emulator
       dockerfile_path: src/Hosts/Beter.TestingTools.Emulator/Dockerfile
       unit_tests_path: tests/Beter.TestingTools.Emulator.UnitTests/Beter.TestingTools.Emulator.UnitTests.csproj
       code_coverage_threshold: 0
@@ -54,7 +54,7 @@ jobs:
     uses: oleksiygarnik/beter-testing-tools-2/.github/workflows/base-docker-publish.yml@main
     with:
       project_name: generator
-      image_name: "${{ env.REGISTRY }}/silencerdev/testingtools.generator"
+      image_name: ${{ env.REGISTRY }}/silencerdev/testingtools.generator
       dockerfile_path: src/Hosts/Beter.TestingTools.Generator/Dockerfile
       unit_tests_path: tests/Beter.TestingTools.Generator.UnitTests/Beter.TestingTools.Generator.UnitTests.csproj
       code_coverage_threshold: 0
