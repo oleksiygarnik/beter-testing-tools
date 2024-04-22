@@ -39,7 +39,7 @@ jobs:
     uses: oleksiygarnik/beter-testing-tools-2/.github/workflows/base-docker-publish.yml@main
     with:
       project_name: emulator
-      image_name: docker.io/silencerdev/testingtools.emulator
+      image_name: "${{ env.REGISTRY }}/silencerdev/testingtools.emulator"
       dockerfile_path: src/Hosts/Beter.TestingTools.Emulator/Dockerfile
       unit_tests_path: tests/Beter.TestingTools.Emulator.UnitTests/Beter.TestingTools.Emulator.UnitTests.csproj
       code_coverage_threshold: 0
