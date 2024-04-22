@@ -5,8 +5,6 @@ on:
   push:
     branches: [ 'main' ]
     tags: [ 'v*.*.*' ]
-env:
-  REGISTRY: docker.io
 
 jobs:
   check-current-branch:
@@ -30,8 +28,7 @@ jobs:
           branch="$(echo ${raw//origin\//} | tr -d '\n')"
           echo "branch=$branch" >> $GITHUB_OUTPUT
           echo "Branches where this tag exists : $branch."
-          echo "Registry = ${{ env.REGISTRY }}"
-
+          
   emulator_push_to_registry:
     needs: check-current-branch
     if: contains(needs.check-current-branch.outputs.branch, 'main')
@@ -39,13 +36,10 @@ jobs:
     uses: oleksiygarnik/beter-testing-tools-2/.github/workflows/base-docker-publish.yml@main
     with:
       project_name: emulator
-      image_name: "${{ env.REGISTRY }}/silencerdev/testingtools.emulator"
+      image_name: docker.io/silencerdev/testingtools.emulator
       dockerfile_path: src/Hosts/Beter.TestingTools.Emulator/Dockerfile
       unit_tests_path: tests/Beter.TestingTools.Emulator.UnitTests/Beter.TestingTools.Emulator.UnitTests.csproj
       code_coverage_threshold: 0
-    secrets:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
           
   generator_push_to_registry:
     needs: check-current-branch
@@ -58,7 +52,4 @@ jobs:
       dockerfile_path: src/Hosts/Beter.TestingTools.Generator/Dockerfile
       unit_tests_path: tests/Beter.TestingTools.Generator.UnitTests/Beter.TestingTools.Generator.UnitTests.csproj
       code_coverage_threshold: 0
-    secrets:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       
