@@ -1,0 +1,104 @@
+name: Docker Image Publishing Blueprint
+
+on:
+  workflow_call:
+    inputs:
+      project_name:
+        required: true
+        type: string
+      image_name:
+        required: true
+        type: string
+      dockerfile_path:
+        required: true
+        type: string
+      unit_tests_path:
+        required: true
+        type: string
+      code_coverage_threshold:
+        required: true
+        type: number
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_PASSWORD:
+        required: true
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ inputs.image_name }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+
+      - name: Build and export Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ${{ inputs.dockerfile_path }}
+          load: true
+          tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Run Unit tests with code coverage
+        run: |
+          dotnet test ${{ inputs.unit_tests_path }} \
+          --configuration Release \
+          --verbosity minimal \
+          --collect:"XPlat Code Coverage" \
+          --results-directory ./coverage
+
+      - name: Install ReportGenerator tool
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+      - name: Generate code coverage report
+        run: reportgenerator -reports:./coverage/**/coverage.cobertura.xml -targetdir:./coverage/report/${{inputs.project_name}} -reporttypes:"JsonSummary"
+
+      - name: Display coverage
+        id: extract_coverage
+        run: |
+          line_coverage=$(jq -r '.summary.linecoverage' ./coverage/report/${{inputs.project_name}}/Summary.json)
+          method_coverage=$(jq -r '.summary.methodcoverage' ./coverage/report/${{inputs.project_name}}/Summary.json)
+          echo "coverage=$line_coverage" >> $GITHUB_OUTPUT 
+          echo "Summary:"
+          echo "Line Coverage: $line_coverage%"
+          echo "Method Coverage: $method_coverage%"
+
+      - name: Upload code coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report-${{inputs.project_name}}
+          path: ./coverage/report/${{inputs.project_name}}
+          
+      - name: Check code coverage threshold
+        if: steps.extract_coverage.outputs.coverage < inputs.code_coverage_threshold
+        run: exit 1
+  
+      - name: Push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ${{ inputs.dockerfile_path }}
+          push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
