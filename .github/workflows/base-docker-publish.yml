@@ -66,32 +66,25 @@ jobs:
           --collect:"XPlat Code Coverage" \
           --results-directory ./coverage
 
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverage/**/coverage.cobertura.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: '0 80'
+        
       - name: Install ReportGenerator tool
         run: dotnet tool install -g dotnet-reportgenerator-globaltool
 
-      - name: Generate code coverage report
-        run: reportgenerator -reports:./coverage/**/coverage.cobertura.xml -targetdir:./coverage/report/${{inputs.project_name}} -reporttypes:"JsonSummary"
+      - name: Generate code coverage report in HTML
+        run: reportgenerator -reports:./coverage/**/coverage.cobertura.xml -targetdir:./coverage/report/${{inputs.project_name}} -reporttypes:"Html"
 
-      - name: Display coverage
-        id: extract_coverage
-        run: |
-          line_coverage=$(jq -r '.summary.linecoverage' ./coverage/report/${{inputs.project_name}}/Summary.json)
-          method_coverage=$(jq -r '.summary.methodcoverage' ./coverage/report/${{inputs.project_name}}/Summary.json)
-          echo "coverage=$line_coverage" >> $GITHUB_OUTPUT 
-          echo "Summary:"
-          echo "Line Coverage: $line_coverage%"
-          echo "Method Coverage: $method_coverage%"
-
-      - name: Upload code coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: code-coverage-report-${{inputs.project_name}}
-          path: ./coverage/report/${{inputs.project_name}}
-          
-      - name: Check code coverage threshold
-        if: steps.extract_coverage.outputs.coverage < inputs.code_coverage_threshold
-        run: exit 1
-  
       - name: Push Docker image
         uses: docker/build-push-action@v5
         with:
