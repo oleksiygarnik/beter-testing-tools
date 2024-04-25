@@ -1,6 +1,6 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Application.Services;
 using Beter.TestingTools.Common.Enums;
+using Beter.TestingTools.Generator.Application.Services;
 using Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers;
 
 namespace Beter.TestingTools.Generator.UnitTests.Application.Services.TestScenarios.MessageHandlers

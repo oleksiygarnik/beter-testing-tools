@@ -1,6 +1,4 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Application.Contracts;
-using Beter.TestingTool.Generator.Domain.Playbacks;
 using Beter.TestingTools.Common.Constants;
 using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.Infrastructure.Options;
@@ -8,12 +6,9 @@ using Beter.TestingTools.Generator.Infrastructure.Services;
 using Beter.TestingTools.Generator.UnitTests.Fixtures;
 using Beter.TestingTools.Models;
 using Confluent.Kafka;
-using FluentAssertions.Equivalency;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Moq;
-using Newtonsoft.Json.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
@@ -54,7 +49,7 @@ namespace Beter.TestingTools.Generator.UnitTests.Infrastructure.Services
             // Assert
             producer.Verify(
                 p => p.ProduceAsync(
-                    topic, 
+                    topic,
                     It.Is<Message<string, string>>(actual => IsEqualsMessage(expectedMessage, actual)), CancellationToken.None),
                 Times.Once);
         }
@@ -185,7 +180,7 @@ namespace Beter.TestingTools.Generator.UnitTests.Infrastructure.Services
             var publishOptions = new PublishOptions
             {
                 BootstrapServers = "localhost:9092",
-                SecurityProtocol = SecurityProtocol.Plaintext 
+                SecurityProtocol = SecurityProtocol.Plaintext
             };
             optionsMock.Setup(x => x.Value).Returns(publishOptions);
 

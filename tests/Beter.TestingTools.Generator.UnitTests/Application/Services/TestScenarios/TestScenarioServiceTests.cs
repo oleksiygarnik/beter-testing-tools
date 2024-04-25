@@ -1,5 +1,5 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Contracts.Responses;
+using Beter.TestingTools.Generator.Contracts.Responses;
 using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
 using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
 using Beter.TestingTools.Generator.Application.Mappers;

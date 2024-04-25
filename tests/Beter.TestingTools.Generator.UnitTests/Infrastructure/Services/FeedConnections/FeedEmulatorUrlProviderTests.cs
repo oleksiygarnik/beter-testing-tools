@@ -1,5 +1,5 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Infrastructure.Options;
+using Beter.TestingTools.Generator.Infrastructure.Options;
 using Beter.TestingTools.Generator.Infrastructure.Services.FeedConnections;
 using Microsoft.Extensions.Options;
 

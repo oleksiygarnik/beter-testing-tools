@@ -1,5 +1,4 @@
-﻿using Beter.TestingTool.Generator.Application.Services.Playbacks.Transformations;
-using Moq;
+﻿using Moq;
 using AutoFixture;
 using Beter.TestingTools.Generator.UnitTests.Fixtures;
 using Beter.TestingTools.Common.Constants;

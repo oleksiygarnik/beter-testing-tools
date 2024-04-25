@@ -1,5 +1,4 @@
-﻿using Beter.TestingTool.Generator.Infrastructure.Repositories;
-using Beter.TestingTools.Generator.Application.Contracts;
+﻿using Beter.TestingTools.Generator.Application.Contracts;
 using Beter.TestingTools.Generator.Application.Contracts.Heartbeats;
 using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
 using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;

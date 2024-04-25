@@ -1,4 +1,4 @@
-﻿using Beter.TestingTool.Generator.Application.Services;
+﻿using Beter.TestingTools.Generator.Application.Services;
 
 namespace Beter.TestingTools.Generator.UnitTests.Application.Services
 {

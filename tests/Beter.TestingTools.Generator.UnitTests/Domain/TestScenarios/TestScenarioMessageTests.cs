@@ -1,4 +1,4 @@
-﻿using Beter.TestingTool.Generator.Domain.TestScenarios;
+﻿using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations.Helpers;
 using Beter.TestingTools.Models.GlobalEvents;
 using System.Text.Json;
