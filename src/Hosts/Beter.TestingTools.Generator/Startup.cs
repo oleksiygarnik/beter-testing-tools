@@ -5,9 +5,11 @@ using Beter.TestingTool.Generator.Host.Extensions;
 using Beter.TestingTool.Generator.Host.Middlewares;
 using Beter.TestingTool.Generator.Infrastructure.Extensions;
 using Beter.TestingTools.Generator.Host.Middlewares;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTool.Generator;
 
+[ExcludeFromCodeCoverage]
 public class Startup
 {
     private IConfiguration Configuration { get; }

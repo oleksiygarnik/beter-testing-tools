@@ -10,6 +10,8 @@
 					</Include>
 					<Exclude>
 						[Beter.TestingTools.Generator.Host*]*
+						[Beter.TestingTools.Generator.Contracts*]*
+						[Beter.TestingTools.Generator.Application.Contracts*]*
 					</Exclude>
 				</Configuration>
 			</DataCollector>
