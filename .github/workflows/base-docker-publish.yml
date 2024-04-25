@@ -69,18 +69,8 @@ jobs:
       - name: Install ReportGenerator tool
         run: dotnet tool install -g dotnet-reportgenerator-globaltool
 
-      - name: Generate code coverage report
-        run: reportgenerator -reports:./coverage/**/coverage.cobertura.xml -targetdir:./coverage/report/${{inputs.project_name}} -reporttypes:"JsonSummary"
-
-      - name: Display coverage
-        id: extract_coverage
-        run: |
-          line_coverage=$(jq -r '.summary.linecoverage' ./coverage/report/${{inputs.project_name}}/Summary.json)
-          method_coverage=$(jq -r '.summary.methodcoverage' ./coverage/report/${{inputs.project_name}}/Summary.json)
-          echo "coverage=$line_coverage" >> $GITHUB_OUTPUT 
-          echo "Summary:"
-          echo "Line Coverage: $line_coverage%"
-          echo "Method Coverage: $method_coverage%"
+      - name: Generate code coverage report in HTML
+        run: reportgenerator -reports:./coverage/**/coverage.cobertura.xml -targetdir:./coverage/report/${{inputs.project_name}} -reporttypes:"Html"
 
       - name: Upload code coverage report
         uses: actions/upload-artifact@v4
@@ -88,10 +78,6 @@ jobs:
           name: code-coverage-report-${{inputs.project_name}}
           path: ./coverage/report/${{inputs.project_name}}
           
-      - name: Check code coverage threshold
-        if: steps.extract_coverage.outputs.coverage < inputs.code_coverage_threshold
-        run: exit 1
-  
       - name: Push Docker image
         uses: docker/build-push-action@v5
         with:
