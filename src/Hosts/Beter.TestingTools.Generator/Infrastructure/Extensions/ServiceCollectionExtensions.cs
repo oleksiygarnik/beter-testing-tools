@@ -6,9 +6,11 @@ using Beter.TestingTool.Generator.Infrastructure.Services;
 using Beter.TestingTool.Generator.Infrastructure.Services.FeedConnections;
 using Polly;
 using Polly.Extensions.Http;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTool.Generator.Infrastructure.Extensions;
 
+[ExcludeFromCodeCoverage]
 static internal class ServiceCollectionExtensions
 {
     public static IServiceCollection AddInfrastructure(

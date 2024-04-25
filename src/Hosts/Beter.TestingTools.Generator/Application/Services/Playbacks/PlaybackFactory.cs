@@ -54,7 +54,6 @@ public sealed class PlaybackFactory : IPlaybackFactory
             StartedAt = _systemClock.UtcNow.AddMinutes(timeOffsetInMinutes).UtcDateTime,
             Version = testScenario.Version,
             Messages = playbackItems.ToDictionary(message => message.InternalId),
-            ActiveMessagesCount = playbackItems.Count,
             LastMessageSentAt = 0
         };
 
@@ -63,7 +62,6 @@ public sealed class PlaybackFactory : IPlaybackFactory
 
     private IReadOnlyCollection<PlaybackItem> CreatePlaybackItems(int caseId, string playbackId, ReplyMode replyMode, IEnumerable<TestScenarioMessage> messages, TimeSpan offset, TimeSpan timeOffsetAfterFirstTimetableMessageInSecounds, double accelerationFactor)
     {
-        ArgumentNullException.ThrowIfNull(playbackId, nameof(playbackId));
         ArgumentNullException.ThrowIfNull(messages, nameof(messages));
 
         var context = _messagesTransformationContextFactory.Create(

@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 
 namespace Beter.TestingTool.Generator.Infrastructure.Services.FeedConnections;
 
-
 public sealed class FeedEmulatorUrlProvider : IFeedEmulatorUrlProvider
 {
     private readonly Uri _baseUrl;

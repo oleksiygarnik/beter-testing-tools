@@ -46,17 +46,23 @@ public sealed class TestScenarioService : ITestScenarioService
             kv => TestScenarioMapper.MapToDto(kv.Value));
     }
 
+    /* TODO:
+     * For stage - 2:
+     * request.ReplyMode
+     * request.TimeOffsetBetweenMessagesInSeconds 
+     * request.AccelerationFactor 
+     */
     public PlaybackDto Start(StartPlaybackRequest request)
     {
         ArgumentNullException.ThrowIfNull(request, nameof(request));
 
         var playback = _playbackFactory.Create(
             request.CaseId,
-            ReplyMode.HistoricalTimeline, // Stage - 2: request.ReplyMode
+            ReplyMode.HistoricalTimeline,
             request.TimeOffsetInMinutes,
-            null, // Stage - 2: request.TimeOffsetBetweenMessagesInSeconds, 
+            null,
             request.TimeOffsetAfterFirstTimetableMessageInSecounds,
-            _accelerationFactor); // Stage - 2: request.AccelerationFactor
+            _accelerationFactor);
 
         _playbackRepository.Add(playback);
 

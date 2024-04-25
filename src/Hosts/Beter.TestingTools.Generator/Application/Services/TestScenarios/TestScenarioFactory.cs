@@ -1,5 +1,6 @@
 ﻿using Beter.TestingTool.Generator.Application.Contracts.TestScenarios;
 using Beter.TestingTool.Generator.Domain.TestScenarios;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.Json;
 
@@ -12,16 +13,25 @@ public sealed class TestScenarioFactory : ITestScenarioFactory
         using var streamReader = new StreamReader(stream);
         var content = await streamReader.ReadToEndAsync();
 
-        var testScenario = JsonSerializer.Deserialize<TestScenario>(content);
-
-        return testScenario with
+        try
         {
-            CaseId = caseId
-        };
+            var testScenario = JsonSerializer.Deserialize<TestScenario>(content);
+
+            return testScenario with
+            {
+                CaseId = caseId
+            };
+        }
+        catch (JsonException e)
+        {
+            throw new InvalidFileContentException("The content of the test scenario file is invalid JSON.", e);
+        }
     }
 
-    public IEnumerable<TestScenario> Create(string testScenarioPath) =>
-        ReadTestScenarioFromAssembly(testScenarioPath);
+    public IEnumerable<TestScenario> Create(string testScenarioPath)
+    {
+        return ReadTestScenarioFromAssembly(testScenarioPath);
+    }
 
     private IEnumerable<TestScenario> ReadTestScenarioFromAssembly(string testScenarioPath)
     {
@@ -34,10 +44,13 @@ public sealed class TestScenarioFactory : ITestScenarioFactory
             throw new DirectoryNotFoundException($"The directory {testScenarioPath} was not found in the assembly.");
         }
 
+        var result = new List<TestScenario>();
         foreach (var scenario in Directory.GetFiles(directoryPath))
         {
-            yield return CreateTestScenario(scenario);
+            result.Add(CreateTestScenario(scenario));
         }
+
+        return result;
     }
 
     //TODO Add validator for json content
@@ -45,14 +58,36 @@ public sealed class TestScenarioFactory : ITestScenarioFactory
     {
         var fileName = Path.GetFileNameWithoutExtension(scenarioPath);
         if (!int.TryParse(fileName, out var caseId))
-            throw new InvalidOperationException("Invalid file name format.");
+            throw new ValidationException("Invalid file name format. File name should be in the format of a number, for example, '1.json'.");
 
         var jsonContent = File.ReadAllText(scenarioPath);
         var jsonSerializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
-        var scenario = JsonSerializer.Deserialize<TestScenario>(jsonContent, jsonSerializerOptions);
-        scenario.SetCaseId(caseId);
+        try
+        {
+            var scenario = JsonSerializer.Deserialize<TestScenario>(jsonContent, jsonSerializerOptions);
+            scenario.SetCaseId(caseId);
 
-        return scenario;
+            return scenario;
+        }
+        catch (JsonException e)
+        {
+            throw new InvalidFileContentException("The content of the test scenario file is invalid JSON.", e);
+        }
+    }
+
+    public class InvalidFileContentException : ValidationException
+    {
+        public InvalidFileContentException()
+        {
+        }
+
+        public InvalidFileContentException(string message) : base(message)
+        {
+        }
+
+        public InvalidFileContentException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

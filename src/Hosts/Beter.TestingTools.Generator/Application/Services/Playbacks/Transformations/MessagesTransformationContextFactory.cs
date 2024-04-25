@@ -43,9 +43,16 @@ public class MessagesTransformationContextFactory : IMessagesTransformationConte
         var runCount = _runCountTracker.GetNext();
         var testCaseStart = _systemClock.UtcNow.Add(offset).UtcDateTime;
         var oldFirstMessageScheduledAt = GetOldFirstMessageScheduledAt(messages);
-        var newFirstMessageScheduledAt = testCaseStart;
+        var newFirstMessageScheduledAt = testCaseStart.ToUnixTimeMilliseconds();
 
-        var matches = CreateMatches(messages, testCaseId, runCount);
+        var matches = CreateMatches(
+            messages, 
+            testCaseId,
+            runCount, 
+            oldFirstMessageScheduledAt, 
+            newFirstMessageScheduledAt, 
+            timeOffsetAfterFirstTimetableMessageInSecounds, 
+            accelerationFactor);
 
         return new MessagesTransformationContext
         {
@@ -69,19 +76,26 @@ public class MessagesTransformationContextFactory : IMessagesTransformationConte
         }
     }
 
-    private static DateTime GetOldFirstMessageScheduledAt(IEnumerable<TestScenarioMessage> messages)
+    private static long GetOldFirstMessageScheduledAt(IEnumerable<TestScenarioMessage> messages)
     {
-        return DateTimeOffset.FromUnixTimeMilliseconds(messages.First().ScheduledAt).UtcDateTime;
+        return messages.First().ScheduledAt;
     }
 
-    private Dictionary<string, MatchIdProfile> CreateMatches(IEnumerable<TestScenarioMessage> messages, int testCaseId, int runCount)
+    private Dictionary<string, MatchIdProfile> CreateMatches(
+        IEnumerable<TestScenarioMessage> messages, 
+        int testCaseId, 
+        int runCount,
+        long oldFirstMessageScheduledAt, 
+        long newFirstMessageScheduledAt, 
+        TimeSpan timeOffsetAfterFirstTimetableMessageInSecounds, 
+        double accelerationFactor)
     {
         static Dictionary<string, DateTime> GetOldStartDateForEachMatchId(IEnumerable<TestScenarioMessage> messages)
         {
             return messages.Where(x => x.IsMessageType(MessageTypes.Timetable))
                 .SelectMany(message => message.GetValue<IEnumerable<TimeTableItemModel>>())
                 .GroupBy(item => item.Id, item => item)
-                .ToDictionary(x => x.Key, x => x.Min(item => item.StartDate.Value));
+                .ToDictionary(x => x.Key, x => DateTime.SpecifyKind(x.Min(item => item.StartDate.Value), DateTimeKind.Utc));
         }
 
         MatchIdProfile CreateMatchProfile(string matchId, int testCaseId, int runCount, DateTime oldStartDate, Dictionary<string, DateTime> oldFirstTimestamp)
@@ -91,15 +105,28 @@ public class MessagesTransformationContextFactory : IMessagesTransformationConte
                 Id = matchId,
                 NewId = _matchIdGenerator.Generate(testCaseId, runCount),
                 OldStartDate = oldStartDate,
+                NewStartDate = CalculateNewStartDate(oldStartDate),
                 OldFirstTimestampByEachMessageType = oldFirstTimestamp
             };
 
             return profile;
         }
 
+        DateTime CalculateNewStartDate(DateTime oldStartDate)
+        {
+            var newFirstMessageScheduledAtDate = DateTimeOffset.FromUnixTimeMilliseconds(newFirstMessageScheduledAt).UtcDateTime;
+            var oldFirstMessageScheduledAtDate = DateTimeOffset.FromUnixTimeMilliseconds(oldFirstMessageScheduledAt).UtcDateTime;
+
+            return oldStartDate
+                + newFirstMessageScheduledAtDate.Subtract(oldStartDate)
+                + (oldStartDate.Subtract(oldFirstMessageScheduledAtDate) / accelerationFactor)
+                + timeOffsetAfterFirstTimetableMessageInSecounds;
+
+        }
+
         var oldStartDate = GetOldStartDateForEachMatchId(messages);
         var oldFirstTimestamp = CreateOldFirstTimestampForEachMatchIdAndChannel(messages);
-
+        
         return GetDistinctMatchIds(messages)
             .ToDictionary(
                 matchId => matchId,
@@ -128,7 +155,7 @@ public class MessagesTransformationContextFactory : IMessagesTransformationConte
             AddMessageType<TimeTableItemModel>(messages, MessageTypes.Timetable, matchId, messageTypes, x => x.Timestamp.ToUtcDateTime());
             AddMessageType<ScoreBoardModel>(messages, MessageTypes.Scoreboard, matchId, messageTypes, x => x.Timestamp.ToUtcDateTime());
             AddMessageType<TradingInfoModel>(messages, MessageTypes.Trading, matchId, messageTypes, x => x.Timestamp.ToUtcDateTime());
-            AddMessageType<IncidentModel>(messages, MessageTypes.Incident, matchId, messageTypes, x => x.Date);
+            AddMessageType<IncidentModel>(messages, MessageTypes.Incident, matchId, messageTypes, x => DateTime.SpecifyKind(x.Date, DateTimeKind.Utc));
 
             return messageTypes;
         }

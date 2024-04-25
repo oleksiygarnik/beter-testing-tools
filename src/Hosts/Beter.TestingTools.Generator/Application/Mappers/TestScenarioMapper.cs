@@ -1,5 +1,5 @@
 ﻿using Beter.TestingTool.Generator.Contracts.TestScenarios;
-using TestScenario = Beter.TestingTool.Generator.Domain.TestScenarios.TestScenario;
+using Beter.TestingTool.Generator.Domain.TestScenarios;
 
 namespace Beter.TestingTool.Generator.Application.Mappers;
 

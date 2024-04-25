@@ -37,10 +37,12 @@ public class Publisher : IPublisher
             .SetLogHandler(HandleLog)
             .Build();
     }
+
     private void HandleLog(IProducer<string, string> producer, LogMessage e)
     {
         _logger.LogDebug($"{e.Level}|{e.Name}|{e.Facility} - {e.Message}");
     }
+
     private void HandleError(IProducer<string, string> producer, Error e)
     {
         _logger.LogError($"Producer error. Reason={e.Reason}, Code={e.Code}, IsBrokerError={e.IsBrokerError}, IsLocalError={e.IsLocalError}");

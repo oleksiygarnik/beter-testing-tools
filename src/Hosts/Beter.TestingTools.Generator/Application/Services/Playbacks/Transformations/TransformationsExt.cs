@@ -33,9 +33,9 @@ public static class TransformationsExt
     {
         if (context.ReplyMode == ReplyMode.HistoricalTimeline)
         {
-            var diffScheduledAtBetweenMessages = DateTimeOffset.FromUnixTimeMilliseconds(message.ScheduledAt).UtcDateTime.Subtract(context.OldFirstMessageScheduledAt);
-            var currentScheduledAt = context.NewFirstMessageScheduledAt.Add(diffScheduledAtBetweenMessages);
-            message.ScheduledAt = currentScheduledAt.ToUnixTimeMilliseconds();
+            var diffScheduledAtBetweenMessages = message.ScheduledAt - context.OldFirstMessageScheduledAt;
+            var currentScheduledAt = context.NewFirstMessageScheduledAt + diffScheduledAtBetweenMessages;
+            message.ScheduledAt = currentScheduledAt;
         }
         else
         {

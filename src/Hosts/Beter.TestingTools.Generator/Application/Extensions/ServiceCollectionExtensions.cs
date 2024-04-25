@@ -1,5 +1,4 @@
-﻿using Beter.TestingTool.Generator.Infrastructure.Repositories;
-using Beter.TestingTool.Generator.Application.Contracts;
+﻿using Beter.TestingTool.Generator.Application.Contracts;
 using Beter.TestingTool.Generator.Application.Contracts.Heartbeats;
 using Beter.TestingTool.Generator.Application.Contracts.Playbacks;
 using Beter.TestingTool.Generator.Application.Contracts.TestScenarios;
@@ -13,9 +12,13 @@ using Beter.TestingTool.Generator.Application.Services.TestScenarios.MessageHand
 using Beter.TestingTool.Generator.Domain.TestScenarios;
 using Beter.TestingTool.Generator.Host.HostedServices;
 using Beter.TestingTool.Generator.Host.Options;
+using Beter.TestingTool.Generator.Infrastructure.Repositories;
+using Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTool.Generator.Application.Extensions;
 
+[ExcludeFromCodeCoverage]
 static internal class ServiceCollectionExtensions
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
@@ -32,6 +35,7 @@ static internal class ServiceCollectionExtensions
         services.AddSingleton<ITestScenarioMessageHandler, SteeringCommandMessageHandler>();
         services.AddSingleton<ITestScenarioMessageHandler, FeedMessageHandler>();
         services.AddSingleton<ITestScenarioMessageHandler, DefaultMessageHandler>();
+        services.AddSingleton<IOffsetStorage, OffsetStorage>();
 
         services.AddSingleton<IPlaybackScheduler, PlaybackScheduler>();
         services.AddHostedService<TestScenarioRunnerHostedService>();
