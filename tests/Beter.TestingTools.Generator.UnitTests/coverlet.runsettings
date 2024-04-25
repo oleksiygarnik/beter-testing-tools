@@ -9,7 +9,7 @@
 						[Beter.TestingTools.Generator*]*
 					</Include>
 					<Exclude>
-						[Beter.TestingTools.Generator*]*
+						[Beter.TestingTools.Generator.Host*]*
 					</Exclude>
 				</Configuration>
 			</DataCollector>
