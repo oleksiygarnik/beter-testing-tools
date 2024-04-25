@@ -1,13 +1,13 @@
-﻿using Beter.TestingTool.Generator.Application.Contracts.Playbacks;
-using Beter.TestingTool.Generator.Application.Contracts.TestScenarios;
-using Beter.TestingTool.Generator.Application.Services.Playbacks.Transformations;
-using Beter.TestingTool.Generator.Application.Services.Playbacks;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
-using Moq;
-using Beter.TestingTool.Generator.Application.Contracts;
+﻿using Moq;
 using AutoFixture;
 using Beter.TestingTools.Generator.UnitTests.Fixtures;
 using Beter.TestingTools.Generator.UnitTests.Common;
+using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
+using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
+using Beter.TestingTools.Generator.Application.Services.Playbacks;
+using Beter.TestingTools.Generator.Application.Contracts;
 
 namespace Beter.TestingTools.Generator.UnitTests.Application.Services.Playbacks
 {

@@ -1,13 +1,13 @@
-﻿using Beter.TestingTool.Generator.Application.Contracts.Playbacks;
-using Beter.TestingTool.Generator.Application.Contracts.TestScenarios;
-using Beter.TestingTool.Generator.Application.Mappers;
-using Beter.TestingTool.Generator.Contracts.Playbacks;
-using Beter.TestingTool.Generator.Contracts.Requests;
-using Beter.TestingTool.Generator.Contracts.Responses;
-using Beter.TestingTool.Generator.Contracts.TestScenarios;
-using Beter.TestingTool.Generator.Domain.Playbacks;
+﻿using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
+using Beter.TestingTools.Generator.Application.Mappers;
+using Beter.TestingTools.Generator.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Contracts.Requests;
+using Beter.TestingTools.Generator.Contracts.Responses;
+using Beter.TestingTools.Generator.Contracts.TestScenarios;
+using Beter.TestingTools.Generator.Domain.Playbacks;
 
-namespace Beter.TestingTool.Generator.Application.Services.TestScenarios;
+namespace Beter.TestingTools.Generator.Application.Services.TestScenarios;
 
 public sealed class TestScenarioService : ITestScenarioService
 {

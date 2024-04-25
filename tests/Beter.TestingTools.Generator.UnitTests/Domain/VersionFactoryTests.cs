@@ -1,4 +1,4 @@
-﻿using Beter.TestingTool.Generator.Domain;
+﻿using Beter.TestingTools.Generator.Domain;
 
 namespace Beter.TestingTools.Generator.UnitTests.Domain
 {

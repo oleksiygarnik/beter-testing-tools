@@ -1,4 +1,4 @@
-﻿namespace Beter.TestingTool.Generator.Domain.Playbacks;
+﻿namespace Beter.TestingTools.Generator.Domain.Playbacks;
 
 public sealed record Playback
 {

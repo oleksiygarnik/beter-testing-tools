@@ -1,10 +1,10 @@
 ﻿using Beter.TestingTools.Common;
 using Beter.TestingTools.Models;
-using Beter.TestingTool.Generator.Application.Contracts.Playbacks;
-using Beter.TestingTool.Generator.Application.Extensions;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Application.Extensions;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
 
-namespace Beter.TestingTool.Generator.Application.Services.Playbacks.Transformations;
+namespace Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
 
 public static class TransformationsExt
 {

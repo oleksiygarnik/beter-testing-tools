@@ -1,6 +1,6 @@
-﻿using Beter.TestingTool.Generator.Domain.TestScenarios;
-using Beter.TestingTool.Generator.Infrastructure.Repositories;
-using Beter.TestingTools.Generator.Application.Common;
+﻿using Beter.TestingTools.Generator.Application.Common;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Infrastructure.Repositories;
 
 namespace Beter.TestingTools.Generator.UnitTests.Infrastructure.Repositories
 {

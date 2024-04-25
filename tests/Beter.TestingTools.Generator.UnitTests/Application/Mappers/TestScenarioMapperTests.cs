@@ -1,6 +1,6 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Application.Mappers;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Mappers;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.UnitTests.Fixtures;
 
 namespace Beter.TestingTools.Generator.UnitTests.Application.Mappers

@@ -1,6 +1,6 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Application.Services.TestScenarios;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Services.TestScenarios;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text;

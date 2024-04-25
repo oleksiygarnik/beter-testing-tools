@@ -1,4 +1,5 @@
 ﻿using Beter.TestingTool.Generator.Application.Services.Heartbeats;
+using Beter.TestingTools.Generator.Application.Services.Heartbeats;
 
 namespace Beter.TestingTools.Generator.UnitTests.Application.Services.Heartbeats
 {

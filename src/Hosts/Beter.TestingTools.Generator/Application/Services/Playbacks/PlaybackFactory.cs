@@ -1,11 +1,11 @@
-﻿using Beter.TestingTool.Generator.Application.Contracts;
-using Beter.TestingTool.Generator.Application.Contracts.Playbacks;
-using Beter.TestingTool.Generator.Application.Contracts.TestScenarios;
-using Beter.TestingTool.Generator.Application.Services.Playbacks.Transformations;
-using Beter.TestingTool.Generator.Domain.Playbacks;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
+﻿using Beter.TestingTools.Generator.Application.Contracts;
+using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
+using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
+using Beter.TestingTools.Generator.Domain.Playbacks;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
 
-namespace Beter.TestingTool.Generator.Application.Services.Playbacks;
+namespace Beter.TestingTools.Generator.Application.Services.Playbacks;
 
 public sealed class PlaybackFactory : IPlaybackFactory
 {

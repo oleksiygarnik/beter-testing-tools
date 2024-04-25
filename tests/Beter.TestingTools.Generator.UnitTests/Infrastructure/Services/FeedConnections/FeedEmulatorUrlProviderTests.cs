@@ -1,6 +1,6 @@
 ﻿using AutoFixture;
 using Beter.TestingTool.Generator.Infrastructure.Options;
-using Beter.TestingTool.Generator.Infrastructure.Services.FeedConnections;
+using Beter.TestingTools.Generator.Infrastructure.Services.FeedConnections;
 using Microsoft.Extensions.Options;
 
 namespace Beter.TestingTools.Generator.UnitTests.Infrastructure.Services.FeedConnections

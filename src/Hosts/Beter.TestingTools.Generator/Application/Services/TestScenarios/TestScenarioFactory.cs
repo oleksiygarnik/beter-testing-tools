@@ -1,10 +1,10 @@
-﻿using Beter.TestingTool.Generator.Application.Contracts.TestScenarios;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
+﻿using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text.Json;
 
-namespace Beter.TestingTool.Generator.Application.Services.TestScenarios;
+namespace Beter.TestingTools.Generator.Application.Services.TestScenarios;
 
 public sealed class TestScenarioFactory : ITestScenarioFactory
 {

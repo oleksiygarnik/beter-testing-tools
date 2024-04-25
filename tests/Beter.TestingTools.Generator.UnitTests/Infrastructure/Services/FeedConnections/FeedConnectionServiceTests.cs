@@ -1,6 +1,6 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Infrastructure.Services.FeedConnections;
 using Beter.TestingTools.Common.Models;
+using Beter.TestingTools.Generator.Infrastructure.Services.FeedConnections;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using Moq.Protected;

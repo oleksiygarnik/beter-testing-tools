@@ -1,5 +1,5 @@
-﻿using Beter.TestingTool.Generator.Application.Contracts.TestScenarios;
-using Beter.TestingTool.Generator.Application.Services.TestScenarios.MessageHandlers;
+﻿using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
+using Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers;
 using Beter.TestingTools.Generator.UnitTests.Common;
 using Moq;
 

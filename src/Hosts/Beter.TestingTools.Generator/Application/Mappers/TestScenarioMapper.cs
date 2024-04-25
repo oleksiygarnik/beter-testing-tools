@@ -1,7 +1,7 @@
-﻿using Beter.TestingTool.Generator.Contracts.TestScenarios;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
+﻿using Beter.TestingTools.Generator.Contracts.TestScenarios;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
 
-namespace Beter.TestingTool.Generator.Application.Mappers;
+namespace Beter.TestingTools.Generator.Application.Mappers;
 
 public static class TestScenarioMapper
 {

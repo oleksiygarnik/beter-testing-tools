@@ -1,16 +1,16 @@
-﻿using Beter.TestingTool.Generator.Application.Extensions;
-using Beter.TestingTools.Common.Constants;
+﻿using Beter.TestingTools.Common.Constants;
 using Beter.TestingTools.Models;
 using Beter.TestingTools.Models.Incidents;
 using Beter.TestingTools.Models.Scoreboards;
 using Beter.TestingTools.Models.TimeTableItems;
 using Beter.TestingTools.Models.TradingInfos;
-using Beter.TestingTool.Generator.Application.Contracts;
-using Beter.TestingTool.Generator.Application.Contracts.Playbacks;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
-using static Beter.TestingTool.Generator.Application.Services.Playbacks.Transformations.MessagesTransformationContext;
+using static Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations.MessagesTransformationContext;
+using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Application.Extensions;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Contracts;
 
-namespace Beter.TestingTool.Generator.Application.Services.Playbacks.Transformations;
+namespace Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
 
 public interface IMessagesTransformationContextFactory
 {
@@ -46,12 +46,12 @@ public class MessagesTransformationContextFactory : IMessagesTransformationConte
         var newFirstMessageScheduledAt = testCaseStart.ToUnixTimeMilliseconds();
 
         var matches = CreateMatches(
-            messages, 
+            messages,
             testCaseId,
-            runCount, 
-            oldFirstMessageScheduledAt, 
-            newFirstMessageScheduledAt, 
-            timeOffsetAfterFirstTimetableMessageInSecounds, 
+            runCount,
+            oldFirstMessageScheduledAt,
+            newFirstMessageScheduledAt,
+            timeOffsetAfterFirstTimetableMessageInSecounds,
             accelerationFactor);
 
         return new MessagesTransformationContext
@@ -82,12 +82,12 @@ public class MessagesTransformationContextFactory : IMessagesTransformationConte
     }
 
     private Dictionary<string, MatchIdProfile> CreateMatches(
-        IEnumerable<TestScenarioMessage> messages, 
-        int testCaseId, 
+        IEnumerable<TestScenarioMessage> messages,
+        int testCaseId,
         int runCount,
-        long oldFirstMessageScheduledAt, 
-        long newFirstMessageScheduledAt, 
-        TimeSpan timeOffsetAfterFirstTimetableMessageInSecounds, 
+        long oldFirstMessageScheduledAt,
+        long newFirstMessageScheduledAt,
+        TimeSpan timeOffsetAfterFirstTimetableMessageInSecounds,
         double accelerationFactor)
     {
         static Dictionary<string, DateTime> GetOldStartDateForEachMatchId(IEnumerable<TestScenarioMessage> messages)
@@ -119,14 +119,14 @@ public class MessagesTransformationContextFactory : IMessagesTransformationConte
 
             return oldStartDate
                 + newFirstMessageScheduledAtDate.Subtract(oldStartDate)
-                + (oldStartDate.Subtract(oldFirstMessageScheduledAtDate) / accelerationFactor)
+                + oldStartDate.Subtract(oldFirstMessageScheduledAtDate) / accelerationFactor
                 + timeOffsetAfterFirstTimetableMessageInSecounds;
 
         }
 
         var oldStartDate = GetOldStartDateForEachMatchId(messages);
         var oldFirstTimestamp = CreateOldFirstTimestampForEachMatchIdAndChannel(messages);
-        
+
         return GetDistinctMatchIds(messages)
             .ToDictionary(
                 matchId => matchId,

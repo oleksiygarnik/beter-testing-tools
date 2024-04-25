@@ -1,10 +1,10 @@
 ﻿using AutoFixture;
 using Beter.TestingTool.Generator.Application.Contracts;
 using Beter.TestingTool.Generator.Domain.Playbacks;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
-using Beter.TestingTool.Generator.Infrastructure.Options;
-using Beter.TestingTool.Generator.Infrastructure.Services;
 using Beter.TestingTools.Common.Constants;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Infrastructure.Options;
+using Beter.TestingTools.Generator.Infrastructure.Services;
 using Beter.TestingTools.Generator.UnitTests.Fixtures;
 using Beter.TestingTools.Models;
 using Confluent.Kafka;

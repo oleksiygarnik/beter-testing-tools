@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Beter.TestingTool.Generator.Domain;
+namespace Beter.TestingTools.Generator.Domain;
 
 public sealed class SteeringCommand
 {

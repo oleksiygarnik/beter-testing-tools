@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Beter.TestingTool.Generator.Host.Middlewares;
+namespace Beter.TestingTools.Generator.Host.Middlewares;
 
 [ExcludeFromCodeCoverage]
 public class RequestLoggingMiddleware

@@ -1,10 +1,10 @@
-﻿using Beter.TestingTool.Generator.Application.Contracts;
-using Beter.TestingTool.Generator.Application.Contracts.Playbacks;
-using Beter.TestingTool.Generator.Domain.Playbacks;
-using Beter.TestingTools.Generator.Application.Common;
+﻿using Beter.TestingTools.Generator.Application.Common;
+using Beter.TestingTools.Generator.Application.Contracts;
+using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Domain.Playbacks;
 using System.Collections.Concurrent;
 
-namespace Beter.TestingTool.Generator.Infrastructure.Repositories;
+namespace Beter.TestingTools.Generator.Infrastructure.Repositories;
 
 public sealed class InMemoryPlaybacksRepository : IPlaybackRepository
 {

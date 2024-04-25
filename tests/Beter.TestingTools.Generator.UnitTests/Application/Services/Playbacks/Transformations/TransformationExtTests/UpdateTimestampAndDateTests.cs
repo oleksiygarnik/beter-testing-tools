@@ -1,8 +1,8 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Application.Contracts.Playbacks;
-using Beter.TestingTool.Generator.Application.Extensions;
-using Beter.TestingTool.Generator.Application.Services.Playbacks.Transformations;
 using Beter.TestingTools.Common.Constants;
+using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Application.Extensions;
+using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
 using Beter.TestingTools.Models.Incidents;
 using Beter.TestingTools.Models.TradingInfos;
 

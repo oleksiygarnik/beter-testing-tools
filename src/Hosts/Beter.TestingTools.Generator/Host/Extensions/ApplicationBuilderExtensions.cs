@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.Features;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Beter.TestingTool.Generator.Host.Extensions;
+namespace Beter.TestingTools.Generator.Host.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class ApplicationBuilderExtensions

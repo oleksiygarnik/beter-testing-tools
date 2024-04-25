@@ -1,10 +1,10 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Application.Contracts.Heartbeats;
-using Beter.TestingTool.Generator.Application.Services.Heartbeats;
-using Beter.TestingTool.Generator.Application.Services.TestScenarios.MessageHandlers;
 using Beter.TestingTool.Generator.Domain;
 using Beter.TestingTool.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Common.Constants;
+using Beter.TestingTools.Generator.Application.Contracts.Heartbeats;
+using Beter.TestingTools.Generator.Application.Services.Heartbeats;
+using Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers;
 using Microsoft.AspNetCore.Components.Forms;
 using Moq;
 using System;

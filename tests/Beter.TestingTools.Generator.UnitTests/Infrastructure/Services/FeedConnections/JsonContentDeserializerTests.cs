@@ -1,4 +1,4 @@
-﻿using Beter.TestingTool.Generator.Infrastructure.Services.FeedConnections;
+﻿using Beter.TestingTools.Generator.Infrastructure.Services.FeedConnections;
 
 namespace Beter.TestingTools.Generator.UnitTests.Infrastructure.Services.FeedConnections
 {

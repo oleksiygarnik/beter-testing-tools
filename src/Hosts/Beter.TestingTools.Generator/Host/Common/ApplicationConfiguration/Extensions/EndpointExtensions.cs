@@ -1,9 +1,9 @@
-﻿using Beter.TestingTool.Generator.Host.Common.ApplicationConfiguration.Extensions;
-using Beter.TestingTool.Generator.Host.Common.ApplicationConfiguration.Interfaces;
+﻿using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Extensions;
+using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-namespace Beter.TestingTool.Generator.Host.Common.ApplicationConfiguration.Extensions;
+namespace Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class EndpointExtensions

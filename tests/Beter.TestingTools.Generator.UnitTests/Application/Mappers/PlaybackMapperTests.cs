@@ -1,6 +1,6 @@
 ﻿using AutoFixture;
-using Beter.TestingTool.Generator.Application.Mappers;
-using Beter.TestingTool.Generator.Domain.Playbacks;
+using Beter.TestingTools.Generator.Application.Mappers;
+using Beter.TestingTools.Generator.Domain.Playbacks;
 using Beter.TestingTools.Generator.UnitTests.Fixtures;
 using System;
 using System.Collections.Generic;

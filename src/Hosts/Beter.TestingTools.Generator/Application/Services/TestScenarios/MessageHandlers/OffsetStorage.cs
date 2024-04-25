@@ -1,5 +1,5 @@
-﻿using Beter.TestingTool.Generator.Application.Contracts;
-using Beter.TestingTools.Common.Enums;
+﻿using Beter.TestingTools.Common.Enums;
+using Beter.TestingTools.Generator.Application.Contracts;
 using System.Collections.Concurrent;
 
 namespace Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers

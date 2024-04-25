@@ -1,12 +1,11 @@
 ﻿using Beter.TestingTools.Common.Constants;
 using Beter.TestingTools.Common.Enums;
 using Beter.TestingTools.Common.Extensions;
-using Beter.TestingTool.Generator.Application.Contracts;
 using Beter.TestingTool.Generator.Application.Services.Playbacks.Transformations.Helpers;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
-using Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Contracts;
 
-namespace Beter.TestingTool.Generator.Application.Services.TestScenarios.MessageHandlers;
+namespace Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers;
 
 public class FeedMessageHandler : BaseTestScenarioMessageHandler
 {

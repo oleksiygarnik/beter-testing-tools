@@ -1,11 +1,11 @@
-﻿using Beter.TestingTool.Generator.Application.Contracts.TestScenarios;
-using Beter.TestingTool.Generator.Contracts.Requests;
-using Beter.TestingTool.Generator.Domain.Playbacks;
-using Beter.TestingTool.Generator.Host.Common.ApplicationConfiguration.Interfaces;
-using Beter.TestingTool.Generator.Host.Common.Constants;
+﻿using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
+using Beter.TestingTools.Generator.Contracts.Requests;
+using Beter.TestingTools.Generator.Domain.Playbacks;
+using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Interfaces;
+using Beter.TestingTools.Generator.Host.Common.Constants;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Beter.TestingTool.Generator.Host.Endpoints.TestScenarios;
+namespace Beter.TestingTools.Generator.Host.Endpoints.TestScenarios;
 
 [ExcludeFromCodeCoverage]
 public class ExecuteTestScenario : IEndpointProvider

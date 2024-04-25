@@ -1,14 +1,14 @@
 ﻿using Beter.TestingTools.Common.Constants;
 using Beter.TestingTools.Models;
-using Beter.TestingTool.Generator.Application.Contracts;
-using Beter.TestingTool.Generator.Domain.TestScenarios;
-using Beter.TestingTool.Generator.Infrastructure.Options;
 using Confluent.Kafka;
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
+using Beter.TestingTools.Generator.Infrastructure.Options;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Contracts;
 
-namespace Beter.TestingTool.Generator.Infrastructure.Services;
+namespace Beter.TestingTools.Generator.Infrastructure.Services;
 
 public class Publisher : IPublisher
 {
