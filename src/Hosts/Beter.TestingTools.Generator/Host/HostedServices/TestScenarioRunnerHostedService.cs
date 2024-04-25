@@ -1,7 +1,9 @@
 ﻿using Beter.TestingTool.Generator.Application.Contracts.Playbacks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTool.Generator.Host.HostedServices;
 
+[ExcludeFromCodeCoverage]
 public class TestScenarioRunnerHostedService : IHostedService
 {
     private Task _executingTask;

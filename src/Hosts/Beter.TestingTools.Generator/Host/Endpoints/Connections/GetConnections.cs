@@ -2,9 +2,11 @@
 using Beter.TestingTool.Generator.Application.Contracts.FeedConnections;
 using Beter.TestingTool.Generator.Host.Common.ApplicationConfiguration.Interfaces;
 using Beter.TestingTool.Generator.Host.Common.Constants;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTool.Generator.Host.Endpoints.Connections;
 
+[ExcludeFromCodeCoverage]
 public class GetConnections : IEndpointProvider
 {
     public static void DefineEndpoints(IEndpointRouteBuilder endpoints)

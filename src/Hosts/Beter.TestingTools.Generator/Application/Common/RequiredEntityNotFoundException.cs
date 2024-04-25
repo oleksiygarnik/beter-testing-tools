@@ -1,5 +1,8 @@
-﻿namespace Beter.TestingTools.Generator.Application.Common
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Beter.TestingTools.Generator.Application.Common
 {
+    [ExcludeFromCodeCoverage]
     public class RequiredEntityNotFoundException : Exception
     {
         public RequiredEntityNotFoundException()

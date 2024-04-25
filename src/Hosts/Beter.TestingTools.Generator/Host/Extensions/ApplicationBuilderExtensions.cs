@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http.Features;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTool.Generator.Host.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class ApplicationBuilderExtensions
 {
     public static IApplicationBuilder ConfigureMaxRequestBodySize(this IApplicationBuilder app)

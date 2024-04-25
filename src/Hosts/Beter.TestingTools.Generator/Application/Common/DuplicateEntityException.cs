@@ -1,5 +1,8 @@
-﻿namespace Beter.TestingTools.Generator.Application.Common
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Beter.TestingTools.Generator.Application.Common
 {
+    [ExcludeFromCodeCoverage]
     public class DuplicateEntityException : DomainException
     {
         private const string DefaultMessage = "Entity with given ID already exists.";
