@@ -9,10 +9,10 @@
 						[Beter.TestingTools.Generator*]*
 					</Include>
 					<Exclude>
-						[Beter.TestingTools.Generator.Host]*,
-						[Beter.TestingTools.Generator.Contracts]*,
-						[Beter.TestingTools.Generator.Application.Contracts]*,
-						[Beter.TestingTools.Generator.Application.Services.Playbacks*]*
+						<File>Beter.TestingTools.Generator.Host*</File>
+						<File>Beter.TestingTools.Generator.Contracts*</File>
+						<File>Beter.TestingTools.Generator.Application.Contracts*</File>
+						<File>Beter.TestingTools.Generator.Application.Services.Playbacks*</File>
 					</Exclude>
 				</Configuration>
 			</DataCollector>
