@@ -12,10 +12,7 @@
 						[Beter.TestingTools.Generator.Host*]*
 						[Beter.TestingTools.Generator.Contracts*]*
 						[Beter.TestingTools.Generator.Application.Contracts*]*
-						[Beter.TestingTools.Hosting*]*
-						[Beter.TestingTools.Logging*]*
-						[Beter.TestingTools.Models*]*
-						[Beter.TestingTools.Common*]*
+						[Beter.TestingTools.Generator.Application.Services.Playbacks.PlaybackScheduler]*
 					</Exclude>
 				</Configuration>
 			</DataCollector>
