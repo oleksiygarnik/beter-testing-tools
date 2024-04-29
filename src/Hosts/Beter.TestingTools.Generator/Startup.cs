@@ -1,14 +1,12 @@
 ﻿using Beter.TestingTools.Hosting;
 using Beter.TestingTools.Generator.Host.Middlewares;
-using System.Diagnostics.CodeAnalysis;
 using Beter.TestingTools.Generator.Infrastructure.Extensions;
-using Beter.TestingTools.Generator.Application.Extensions;
-using Beter.TestingTools.Generator.Host.Extensions;
 using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Extensions;
+using Beter.TestingTools.Generator.Host.Extensions;
+using Beter.TestingTools.Generator.Application.Extensions;
 
 namespace Beter.TestingTools.Generator;
 
-[ExcludeFromCodeCoverage]
 public class Startup
 {
     private IConfiguration Configuration { get; }

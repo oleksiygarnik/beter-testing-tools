@@ -2,11 +2,9 @@
 using Beter.TestingTools.Generator.Contracts.Playbacks;
 using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Interfaces;
 using Beter.TestingTools.Generator.Host.Common.Constants;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTools.Generator.Host.Endpoints.TestScenarios;
 
-[ExcludeFromCodeCoverage]
 public class GetActivePlaybacks : IEndpointProvider
 {
     public static void DefineEndpoints(IEndpointRouteBuilder endpoints)

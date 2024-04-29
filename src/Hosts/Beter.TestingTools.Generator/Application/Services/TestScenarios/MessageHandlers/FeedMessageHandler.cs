@@ -1,9 +1,9 @@
 ﻿using Beter.TestingTools.Common.Constants;
 using Beter.TestingTools.Common.Enums;
 using Beter.TestingTools.Common.Extensions;
-using Beter.TestingTools.Generator.Domain.TestScenarios;
-using Beter.TestingTools.Generator.Application.Contracts;
 using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations.Helpers;
+using Beter.TestingTools.Generator.Application.Contracts;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
 
 namespace Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers;
 

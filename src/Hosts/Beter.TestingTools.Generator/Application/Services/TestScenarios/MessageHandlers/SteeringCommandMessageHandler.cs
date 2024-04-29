@@ -1,9 +1,9 @@
 ﻿using Beter.TestingTools.Common.Constants;
-using Beter.TestingTools.Generator.Application.Services.Heartbeats;
 using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
-using Beter.TestingTools.Generator.Application.Contracts.Heartbeats;
+using Beter.TestingTools.Generator.Application.Services.Heartbeats;
 using Beter.TestingTools.Generator.Domain;
 using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Contracts.Heartbeats;
 
 namespace Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers;
 

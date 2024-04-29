@@ -2,12 +2,12 @@
 using AutoFixture;
 using Beter.TestingTools.Generator.UnitTests.Fixtures;
 using Beter.TestingTools.Generator.UnitTests.Common;
-using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
+using Beter.TestingTools.Generator.Application.Contracts;
 using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
 using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
 using Beter.TestingTools.Generator.Application.Services.Playbacks;
-using Beter.TestingTools.Generator.Application.Contracts;
 
 namespace Beter.TestingTools.Generator.UnitTests.Application.Services.Playbacks
 {

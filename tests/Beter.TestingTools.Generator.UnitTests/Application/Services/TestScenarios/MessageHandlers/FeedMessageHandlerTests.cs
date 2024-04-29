@@ -1,9 +1,9 @@
 ﻿using AutoFixture;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Common.Constants;
 using Beter.TestingTools.Common.Enums;
 using Beter.TestingTools.Generator.Application.Contracts;
 using Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHandlers;
-using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.UnitTests.Common;
 using Moq;
 using System.Text.Json.Nodes;

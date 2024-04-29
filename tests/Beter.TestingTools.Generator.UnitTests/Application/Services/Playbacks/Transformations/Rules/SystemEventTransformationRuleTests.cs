@@ -10,11 +10,11 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Beter.TestingTools.Models.GlobalEvents;
-using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
-using Beter.TestingTools.Generator.Application.Extensions;
-using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
-using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations.Rules;
+using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
+using Beter.TestingTools.Generator.Application.Extensions;
 
 namespace Beter.TestingTools.Generator.UnitTests.Application.Services.Playbacks.Transformations.Rules
 {

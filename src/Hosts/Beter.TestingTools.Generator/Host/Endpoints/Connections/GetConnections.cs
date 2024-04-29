@@ -1,12 +1,10 @@
 ﻿using Beter.TestingTools.Common.Models;
-using System.Diagnostics.CodeAnalysis;
 using Beter.TestingTools.Generator.Host.Common.Constants;
 using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Interfaces;
 using Beter.TestingTools.Generator.Application.Contracts.FeedConnections;
 
 namespace Beter.TestingTools.Generator.Host.Endpoints.Connections;
 
-[ExcludeFromCodeCoverage]
 public class GetConnections : IEndpointProvider
 {
     public static void DefineEndpoints(IEndpointRouteBuilder endpoints)

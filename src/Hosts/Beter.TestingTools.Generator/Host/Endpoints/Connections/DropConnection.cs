@@ -1,11 +1,9 @@
 ﻿using Beter.TestingTools.Generator.Application.Contracts.FeedConnections;
 using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Interfaces;
 using Beter.TestingTools.Generator.Host.Common.Constants;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTools.Generator.Host.Endpoints.Connections;
 
-[ExcludeFromCodeCoverage]
 public class DropConnection : IEndpointProvider
 {
     public static void DefineEndpoints(IEndpointRouteBuilder endpoints)

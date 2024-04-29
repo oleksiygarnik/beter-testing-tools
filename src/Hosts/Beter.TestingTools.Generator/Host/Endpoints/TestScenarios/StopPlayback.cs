@@ -3,11 +3,10 @@ using Beter.TestingTools.Generator.Contracts.Requests;
 using Beter.TestingTools.Generator.Contracts.Responses;
 using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Interfaces;
 using Beter.TestingTools.Generator.Host.Common.Constants;
-using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Beter.TestingTools.Generator.Host.Endpoints.TestScenarios;
 
-[ExcludeFromCodeCoverage]
 public class StopPlayback : IEndpointProvider
 {
     public static void DefineEndpoints(IEndpointRouteBuilder endpoints)

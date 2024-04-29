@@ -5,10 +5,10 @@ using Beter.TestingTools.Models.Scoreboards;
 using Beter.TestingTools.Models.TimeTableItems;
 using Beter.TestingTools.Models.TradingInfos;
 using static Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations.MessagesTransformationContext;
-using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
-using Beter.TestingTools.Generator.Application.Extensions;
-using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.Application.Contracts;
+using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
+using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Generator.Application.Extensions;
 
 namespace Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
 

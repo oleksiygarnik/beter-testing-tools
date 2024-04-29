@@ -1,11 +1,9 @@
 ﻿using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Extensions;
 using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Interfaces;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Extensions;
 
-[ExcludeFromCodeCoverage]
 public static class EndpointExtensions
 {
     public static void UseEndpoints<TMarker>(this IApplicationBuilder app)

@@ -1,8 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿namespace Beter.TestingTools.Generator.Host.Middlewares;
 
-namespace Beter.TestingTools.Generator.Host.Middlewares;
-
-[ExcludeFromCodeCoverage]
 public class RequestLoggingMiddleware
 {
     private readonly RequestDelegate _next;

@@ -1,10 +1,10 @@
 ﻿using Beter.TestingTools.Models;
 using Microsoft.Extensions.Options;
-using Beter.TestingTools.Generator.Application.Services.Heartbeats;
-using Beter.TestingTools.Generator.Application.Contracts.Heartbeats;
-using Beter.TestingTools.Generator.Application.Extensions;
-using Beter.TestingTools.Generator.Host.Options;
 using Beter.TestingTools.Generator.Application.Contracts;
+using Beter.TestingTools.Generator.Host.Options;
+using Beter.TestingTools.Generator.Application.Services.Heartbeats;
+using Beter.TestingTools.Generator.Application.Extensions;
+using Beter.TestingTools.Generator.Application.Contracts.Heartbeats;
 
 namespace Beter.TestingTools.Generator.Host.HostedServices;
 

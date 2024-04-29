@@ -1,4 +1,5 @@
-﻿using Beter.TestingTools.Generator.Application.Contracts;
+﻿using Beter.TestingTools.Generator.Infrastructure.Repositories;
+using Beter.TestingTools.Generator.Application.Contracts;
 using Beter.TestingTools.Generator.Application.Contracts.Heartbeats;
 using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
 using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
@@ -12,12 +13,10 @@ using Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHan
 using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.Host.HostedServices;
 using Beter.TestingTools.Generator.Host.Options;
-using Beter.TestingTools.Generator.Infrastructure.Repositories;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTools.Generator.Application.Extensions;
 
-[ExcludeFromCodeCoverage]
 static internal class ServiceCollectionExtensions
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)

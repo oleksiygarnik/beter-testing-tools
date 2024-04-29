@@ -1,6 +1,5 @@
 ﻿using Beter.TestingTools.Common.Constants;
 using Beter.TestingTools.Models.Incidents;
-using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations;
 using Beter.TestingTools.Generator.Domain.TestScenarios;
 
 namespace Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations.Rules;
