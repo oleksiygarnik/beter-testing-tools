@@ -87,7 +87,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ${{ inputs.dockerfile_path }}
+          file: ${{ inputs.dockerfile_path }}/Dockerfile
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
