@@ -9,8 +9,8 @@
 						[Beter.TestingTools.Generator*]*
 					</Include>
 					<Exclude>
-						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Application.Services.Playbacks*
-						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Application.Exceptions*
+						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Application.Services.Playbacks*,
+						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Application.Exceptions*,
 						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Application.Extensions.ServiceCollectionExtensions,
 						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Contracts*,
 						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Host*,
