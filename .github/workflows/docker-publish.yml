@@ -53,7 +53,7 @@ jobs:
       project_name: generator
       image_name: docker.io/silencerdev/testingtools.generator
       dockerfile_path: src/Hosts/Beter.TestingTools.Generator/Dockerfile
-      unit_tests_path: tests/Beter.TestingTools.Generator.UnitTests/Beter.TestingTools.Generator.UnitTests.csproj
+      unit_tests_path: tests/Beter.TestingTools.Generator.UnitTests/
       code_coverage_threshold: 0
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
