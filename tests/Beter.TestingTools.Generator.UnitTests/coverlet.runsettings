@@ -15,7 +15,7 @@
 						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Contracts*,
 						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Host*,
 						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Infrastructure.Extensions*,
-						[Beter.TestingTools.Generator]Beter.TestingTools.Generator*
+						[Beter.TestingTools.Generator]Beter.TestingTools.Generator
 					</Exclude>
 				</Configuration>
 			</DataCollector>
