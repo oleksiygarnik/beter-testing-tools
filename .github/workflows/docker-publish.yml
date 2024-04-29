@@ -3,7 +3,7 @@ name: Docker Image CI Pipeline for Emulator and Generator
 on:
   workflow_dispatch:
   push:
-    tags: [ 'v*.*.*' ]
+    tags: [ 'v[0-9]*.[0-9]*.[0-9]*' ]
 
 jobs:
   emulator_push_to_docker_hub:
