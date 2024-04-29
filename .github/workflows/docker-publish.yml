@@ -39,7 +39,7 @@ jobs:
       image_name: docker.io/silencerdev/testingtools.emulator
       dockerfile_path: src/Hosts/Beter.TestingTools.Emulator
       unit_tests_path: tests/Beter.TestingTools.Emulator.UnitTests
-      code_coverage_threshold: 0
+      code_coverage_threshold: 85
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
@@ -54,7 +54,7 @@ jobs:
       image_name: docker.io/silencerdev/testingtools.generator
       dockerfile_path: src/Hosts/Beter.TestingTools.Generator
       unit_tests_path: tests/Beter.TestingTools.Generator.UnitTests
-      code_coverage_threshold: 0
+      code_coverage_threshold: 85
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
