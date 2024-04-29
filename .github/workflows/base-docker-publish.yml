@@ -79,6 +79,16 @@ jobs:
           name: code-coverage-report-${{inputs.project_name}}
           path: ./coverage/report/${{inputs.project_name}}
 
+      - name: Display Code Coverage
+        id: extract_coverage
+        run: |
+          line_coverage=$(jq -r '.summary.linecoverage' ./coverage/report/${{inputs.project_name}}/Summary.json)
+          method_coverage=$(jq -r '.summary.methodcoverage' ./coverage/report/${{inputs.project_name}}/Summary.json)
+          echo "coverage=$line_coverage" >> $GITHUB_OUTPUT 
+          echo "Summary:"
+          echo "Line Coverage: $line_coverage%"
+          echo "Method Coverage: $method_coverage%"
+          
       - name: Check Code Coverage Threshold
         if: steps.extract_coverage.outputs.coverage < inputs.code_coverage_threshold
         run: exit 1
