@@ -1,5 +1,4 @@
-﻿using Beter.B2B.Consumer;
-using Beter.TestingTools.Consumer.Extensions;
+﻿using Beter.TestingTools.Consumer.Extensions;
 using Beter.TestingTools.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

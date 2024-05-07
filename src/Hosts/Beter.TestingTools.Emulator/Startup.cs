@@ -1,7 +1,6 @@
 ﻿using Beter.TestingTools.Hosting;
 using Beter.TestingTools.Emulator.Extensions;
 using Beter.TestingTools.Emulator.Publishers.Extensions;
-using Beter.B2B.Emulator;
 
 namespace Beter.TestingTools.Emulator;
 
