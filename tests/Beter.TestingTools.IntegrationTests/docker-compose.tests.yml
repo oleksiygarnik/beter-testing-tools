@@ -83,7 +83,7 @@ services:
     networks: 
       - testing-tools
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://beter.testing-tool.generator"]
+      test: ["CMD", "curl", "-f", "http://beter.testing-tool.generator/health"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -111,7 +111,7 @@ services:
     networks: 
       - testing-tools 
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://beter.testing-tool.emulator"]
+      test: ["CMD", "curl", "-f", "http://beter.testing-tool.emulator/health"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -144,7 +144,7 @@ services:
     networks: 
       - testing-tools
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://beter.testing-tool.consumer"]
+      test: ["CMD", "curl", "-f", "http://beter.testing-tool.consumer/health"]
       interval: 10s
       timeout: 5s
       retries: 5

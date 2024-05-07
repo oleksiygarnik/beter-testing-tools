@@ -9,7 +9,7 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients
     {
         private readonly IGeneratorServiceUrlProvider _urlProvider;
 
-        public GeneratorServiceHttpClient(IGeneratorServiceUrlProvider urlProvider)
+        public GeneratorServiceHttpClient(IGeneratorServiceUrlProvider urlProvider) : base(urlProvider?.BaseUrl())
         {
             _urlProvider = urlProvider ?? throw new ArgumentNullException(nameof(urlProvider));
         }

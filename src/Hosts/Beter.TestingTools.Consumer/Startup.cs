@@ -1,16 +1,11 @@
-﻿using Beter.TestingTools.Consumer.Endpoints.TestScenarios;
+﻿using Beter.B2B.Consumer;
 using Beter.TestingTools.Consumer.Extensions;
+using Beter.TestingTools.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.FeatureManagement;
-using Beter.TestingTools.Hosting;
-using Beter.B2B.Consumer;
-using Beter.TestingTools.Consumer.Options;
-using Beter.TestingTools.Consumer.Services.Abstract;
-using Beter.TestingTools.Consumer.Services;
 
 namespace Beter.TestingTools.Consumer;
 

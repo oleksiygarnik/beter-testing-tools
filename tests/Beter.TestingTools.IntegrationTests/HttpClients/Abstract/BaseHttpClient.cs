@@ -12,9 +12,9 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
     {
         private readonly HttpClient _httpClient;
 
-        public BaseHttpClient()
+        public BaseHttpClient(Uri baseUrl)
         {
-            _httpClient = new HttpClient();
+            _httpClient = new HttpClient() { BaseAddress = baseUrl };
         }
 
         protected async Task<string> SendRequest(HttpRequestMessage request, CancellationToken cancellationToken)

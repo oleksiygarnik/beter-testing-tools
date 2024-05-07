@@ -18,7 +18,7 @@ namespace Beter.TestingTools.IntegrationTests.Tests
 
         public End2EndTests(IConsumerServiceHttpClient consumerHttpClient, IGeneratorServiceHttpClient generatorHttpClient, ITestOutputHelper output)
         {
-            _output = output;
+            _output = output ?? throw new ArgumentNullException(nameof(output));
             _consumerHttpClient = consumerHttpClient ?? throw new ArgumentNullException(nameof(consumerHttpClient));
             _generatorHttpClient = generatorHttpClient ?? throw new ArgumentNullException(nameof(generatorHttpClient));
         }
@@ -47,10 +47,11 @@ namespace Beter.TestingTools.IntegrationTests.Tests
             var fileContent = File.ReadAllBytes(directoryPath);
 
             _output.WriteLine("Send load test scenario to Generator.");
+            await _generatorHttpClient.WaitForServiceReadiness();
             await _generatorHttpClient.LoadTestScenario(fileContent, CancellationToken.None);
 
-            await Task.Delay(10000);
             _output.WriteLine("Send load test scenario to Consumer.");
+            await _consumerHttpClient.WaitForServiceReadiness();
             await _consumerHttpClient.LoadTestScenario(fileContent, CancellationToken.None);
 
             var request = new StartPlaybackRequest()

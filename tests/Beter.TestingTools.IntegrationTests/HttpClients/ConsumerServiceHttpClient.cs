@@ -8,7 +8,7 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients
     {
         private readonly IConsumerServiceUrlProvider _urlProvider;
 
-        public ConsumerServiceHttpClient(IConsumerServiceUrlProvider urlProvider)
+        public ConsumerServiceHttpClient(IConsumerServiceUrlProvider urlProvider) : base(urlProvider?.BaseUrl())
         {
             _urlProvider = urlProvider ?? throw new ArgumentNullException(nameof(urlProvider));
         }
