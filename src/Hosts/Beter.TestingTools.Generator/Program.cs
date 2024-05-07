@@ -1,7 +1,6 @@
-using Beter.TestingTools.Generator;
 using Beter.TestingTools.Hosting;
 
-namespace Beter.B2B.Generator;
+namespace Beter.TestingTools.Generator;
 
 public class Program
 {

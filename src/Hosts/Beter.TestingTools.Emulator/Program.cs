@@ -1,7 +1,6 @@
-﻿using Beter.TestingTools.Emulator;
-using Beter.TestingTools.Hosting;
+﻿using Beter.TestingTools.Hosting;
 
-namespace Beter.B2B.Emulator;
+namespace Beter.TestingTools.Emulator;
 
 public class Program
 {

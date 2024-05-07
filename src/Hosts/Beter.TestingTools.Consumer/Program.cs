@@ -1,7 +1,6 @@
-﻿using Beter.TestingTools.Consumer;
-using Beter.TestingTools.Hosting;
+﻿using Beter.TestingTools.Hosting;
 
-namespace Beter.B2B.Consumer;
+namespace Beter.TestingTools.Consumer;
 
 public class Program
 {
