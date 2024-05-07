@@ -71,7 +71,7 @@ services:
 
   beter.testingtool.generator:
     build:
-      context: .
+      context: ../../../../../
       dockerfile: src/Hosts/Beter.TestingTools.Generator/Dockerfile
     container_name: beter.testing-tool.generator
     networks: 
@@ -93,7 +93,7 @@ services:
 
   beter.testingtool.emulator:
     build:
-      context: .
+      context: ../../../../../
       dockerfile: src/Hosts/Beter.TestingTools.Emulator/Dockerfile
     container_name: beter.testing-tool.emulator
     networks: 
@@ -120,7 +120,7 @@ services:
 
   beter.testingtool.consumer:
     build:
-      context: .
+      context: ../../../../../
       dockerfile: src/Hosts/Beter.TestingTools.Consumer/Dockerfile
     container_name: beter.testing-tool.consumer
     networks: 
@@ -128,7 +128,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - FeatureManagement__ConsumeByTemplate=false
+      - FeatureManagement__ConsumeByTemplate=true
       - Publisher__BootstrapServers=kafka:29092
       - Publisher__SecurityProtocol=0
       - Publisher__AllowAutoCreateTopics=true

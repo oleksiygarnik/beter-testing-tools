@@ -31,6 +31,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beter.TestingTools.Generato
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C0F16408-C973-488A-BDFC-9821FCF69D14}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beter.TestingTools.Consumer", "src\Hosts\Beter.TestingTools.Consumer\Beter.TestingTools.Consumer.csproj", "{70866E70-9540-4A6A-971F-3640C5CF076B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beter.TestingTools.IntegrationTests", "tests\Beter.TestingTools.IntegrationTests\Beter.TestingTools.IntegrationTests.csproj", "{FA5BDECC-4F60-489D-8B21-878625CD194A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,14 @@ Global
 		{C0F16408-C973-488A-BDFC-9821FCF69D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0F16408-C973-488A-BDFC-9821FCF69D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0F16408-C973-488A-BDFC-9821FCF69D14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70866E70-9540-4A6A-971F-3640C5CF076B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70866E70-9540-4A6A-971F-3640C5CF076B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70866E70-9540-4A6A-971F-3640C5CF076B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70866E70-9540-4A6A-971F-3640C5CF076B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA5BDECC-4F60-489D-8B21-878625CD194A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA5BDECC-4F60-489D-8B21-878625CD194A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA5BDECC-4F60-489D-8B21-878625CD194A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA5BDECC-4F60-489D-8B21-878625CD194A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +105,8 @@ Global
 		{AB01F16C-E887-485A-8B32-4C150B8BA757} = {83EBEA52-5B1C-487C-8615-8396803860E9}
 		{3528EE4B-75C5-40E9-AA24-D03260CB792E} = {1CF85D2C-805C-486B-86CB-76D85915A1A6}
 		{56ECE23D-CCBE-4156-AF75-1BFE874744E6} = {1CF85D2C-805C-486B-86CB-76D85915A1A6}
+		{70866E70-9540-4A6A-971F-3640C5CF076B} = {1CF85D2C-805C-486B-86CB-76D85915A1A6}
+		{FA5BDECC-4F60-489D-8B21-878625CD194A} = {B203F3BE-69A3-4841-B31E-B18AE4307260}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41C07415-9441-4202-8F50-41BE1CB6A5C7}

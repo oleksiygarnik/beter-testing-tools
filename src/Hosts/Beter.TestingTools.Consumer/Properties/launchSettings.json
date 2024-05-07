@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "Beter.FeedService.TestingTools.Consumer": {
+      "commandName": "Project",
+      "environmentVariables": {
+        //"DOTNET_ENVIRONMENT": "test",
+        //"ASPNETCORE_ENVIRONMENT": "test",
+        //"ASPNETCORE_URLS": "http://*:8080",
+        //"Messaging__ProducerConfig__BootstrapServers": "b-1.bsrv-dev-221.9ry6ph.c1.kafka.eu-central-1.amazonaws.com:9094,b-2.bsrv-dev-221.9ry6ph.c1.kafka.eu-central-1.amazonaws.com:9094,b-3.bsrv-dev-221.9ry6ph.c1.kafka.eu-central-1.amazonaws.com:9094",
+        //"Messaging__ProducerConfig__SecurityProtocol": "Ssl",
+        //"Messaging__ProducerConfig__SslCertificateLocation": "E:\\kafka_credentilals\\client.crt",
+        //"Messaging__ProducerConfig__SslKeyLocation": "E:\\kafka_credentilals\\client.key",
+        //"FeedService__DestinationTopicName": "playtech-feed-messages-test"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true
+    }
+  }
+}

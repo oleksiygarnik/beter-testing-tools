@@ -6,7 +6,6 @@ using Beter.TestingTools.Generator.Infrastructure.Services;
 using Beter.TestingTools.Generator.Infrastructure.Services.FeedConnections;
 using Polly;
 using Polly.Extensions.Http;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Beter.TestingTools.Generator.Infrastructure.Extensions;
 

@@ -4,6 +4,7 @@ using Beter.TestingTools.Generator.Infrastructure.Extensions;
 using Beter.TestingTools.Generator.Host.Common.ApplicationConfiguration.Extensions;
 using Beter.TestingTools.Generator.Host.Extensions;
 using Beter.TestingTools.Generator.Application.Extensions;
+using Beter.B2B.Generator;
 
 namespace Beter.TestingTools.Generator;
 

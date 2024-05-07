@@ -402,7 +402,7 @@
           }
         }
       ],
-      "ScheduledAt": 1704379223136,
+      "ScheduledAt": 1704379123136,
       "Channel": "time_table",
       "MessageType": "time_table"
     }
