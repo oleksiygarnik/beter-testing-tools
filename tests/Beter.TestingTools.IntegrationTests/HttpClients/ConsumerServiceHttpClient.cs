@@ -23,7 +23,10 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients
 
             var response = await SendRequest(requestMessage, cancellationToken);
 
-            return JsonSerializer.Deserialize<TestScenarioTemplate>(response);
+            return JsonSerializer.Deserialize<TestScenarioTemplate>(response, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
         }
 
         public async Task LoadTestScenario(byte[] fileContent, CancellationToken cancellationToken = default)

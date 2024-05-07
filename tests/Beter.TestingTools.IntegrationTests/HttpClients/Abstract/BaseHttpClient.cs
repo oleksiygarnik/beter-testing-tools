@@ -24,7 +24,7 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
 
             var response = await retryPolicy
                 .WrapAsync(circuitBreakerPolicy)
-                .ExecuteAsync(() => _httpClient.SendAsync(request, cancellationToken));
+                .ExecuteAsync(async () => await _httpClient.SendAsync(request, cancellationToken));
 
             if (!response.IsSuccessStatusCode)
             {

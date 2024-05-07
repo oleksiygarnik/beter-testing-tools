@@ -67,10 +67,16 @@ namespace Beter.TestingTools.IntegrationTests.Tests
             {
                 var response = await _consumerHttpClient.GetTemplate();
 
-                _output.WriteLine($"Count: {response.Messages.SelectMany(x => x.Value).Count()}");
+                int unprocessedMessageCount = response.Messages.SelectMany(x => x.Value).Count();
+                _output.WriteLine($"Remaining unprocessed messages: {unprocessedMessageCount}");
 
-                return response.IsProcessed && !response.IsFailed;
+                return response.IsProcessed;
             });
+
+            var response = await _consumerHttpClient.GetTemplate();
+
+            Assert.False(response.IsFailed);
+            Assert.True(response.IsProcessed);
         }
     }
 }

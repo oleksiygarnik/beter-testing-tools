@@ -49,7 +49,10 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients
 
             var response = await SendRequest(requestMessage, cancellationToken);
 
-            return JsonSerializer.Deserialize<Playback>(response);
+            return JsonSerializer.Deserialize<Playback>(response, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
         }
     }
 }
