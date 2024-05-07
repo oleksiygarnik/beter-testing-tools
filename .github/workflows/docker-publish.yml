@@ -6,7 +6,19 @@ on:
     tags: [ 'v[0-9]*.[0-9]*.[0-9]*' ]
 
 jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Checkout Repository
+       uses: actions/checkout@v4
+
+     - name: Run Integration Tests
+       run: |
+          dotnet test tests/Beter.TestingTools.IntegrationTests
+
   emulator_push_to_docker_hub:
+    needs: integration-tests
+    if: needs.integration-tests.result == 'success' 
     name: Emulator
     uses: oleksiygarnik/beter-testing-tools-2/.github/workflows/base-docker-publish.yml@main
     with:
@@ -20,6 +32,8 @@ jobs:
       DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
           
   generator_push_to_docker_hub:
+    needs: integration-tests
+    if: needs.integration-tests.result == 'success' 
     name: Generator
     uses: oleksiygarnik/beter-testing-tools-2/.github/workflows/base-docker-publish.yml@main
     with:
