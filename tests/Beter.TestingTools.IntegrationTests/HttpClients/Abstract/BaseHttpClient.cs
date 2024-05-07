@@ -3,6 +3,8 @@ using Polly.Extensions.Http;
 using Polly;
 using System.Text;
 using System.Text.Json;
+using System.Net;
+using Beter.TestingTools.IntegrationTests.Helpers;
 
 namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
 {
@@ -32,6 +34,11 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
             return await response.Content.ReadAsStringAsync(cancellationToken);
         }
 
+        public async Task WaitForServiceReadiness()
+        {
+            await _httpClient.GetAsyncAndWaitForStatusCode("/health", HttpStatusCode.OK);
+        }
+
         protected static StringContent MapToContent<T>(T data) where T : class
         {
             return new StringContent(JsonSerializer.Serialize(data), Encoding.UTF8, "application/json");
@@ -43,7 +50,7 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
         private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy() => 
             HttpPolicyExtensions
                 .HandleTransientHttpError()
-                .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+                .OrResult(msg => msg.StatusCode == HttpStatusCode.NotFound)
                 .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
 
         private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy() =>

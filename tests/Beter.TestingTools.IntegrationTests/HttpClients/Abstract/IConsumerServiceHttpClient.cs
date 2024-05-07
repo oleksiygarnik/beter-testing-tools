@@ -2,7 +2,7 @@
 
 namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
 {
-    public interface IConsumerServiceHttpClient
+    public interface IConsumerServiceHttpClient : IServiceReadinessChecker
     {
         Task LoadTestScenario(byte[] fileContent, CancellationToken cancellationToken = default);
 

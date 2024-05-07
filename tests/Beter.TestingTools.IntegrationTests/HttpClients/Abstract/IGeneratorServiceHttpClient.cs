@@ -3,7 +3,7 @@ using Beter.TestingTools.Generator.Domain.Playbacks;
 
 namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
 {
-    public interface IGeneratorServiceHttpClient
+    public interface IGeneratorServiceHttpClient : IServiceReadinessChecker
     {
         Task LoadTestScenario(byte[] fileContent, CancellationToken cancellationToken = default);
 
