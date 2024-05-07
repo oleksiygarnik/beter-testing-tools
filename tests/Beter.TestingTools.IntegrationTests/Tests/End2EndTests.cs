@@ -13,26 +13,14 @@ namespace Beter.TestingTools.IntegrationTests.Tests
     public class End2EndTests : DockerComposeTestBase
     {
         private readonly ITestOutputHelper _output;
-        private readonly TextWriter _originalOut;
-        private readonly TextWriter _textWriter;
         private readonly IConsumerServiceHttpClient _consumerHttpClient;
         private readonly IGeneratorServiceHttpClient _generatorHttpClient;
 
         public End2EndTests(IConsumerServiceHttpClient consumerHttpClient, IGeneratorServiceHttpClient generatorHttpClient, ITestOutputHelper output)
         {
             _output = output;
-            _originalOut = Console.Out;
-            _textWriter = new StringWriter();
-            Console.SetOut(_textWriter);
-
             _consumerHttpClient = consumerHttpClient ?? throw new ArgumentNullException(nameof(consumerHttpClient));
             _generatorHttpClient = generatorHttpClient ?? throw new ArgumentNullException(nameof(generatorHttpClient));
-        }
-
-        public void Dispose()
-        {
-            _output.WriteLine(_textWriter.ToString());
-            Console.SetOut(_originalOut);
         }
 
         protected override ICompositeService Build()
@@ -61,11 +49,8 @@ namespace Beter.TestingTools.IntegrationTests.Tests
             _output.WriteLine("Send load test scenario to Generator.");
             await _generatorHttpClient.LoadTestScenario(fileContent, CancellationToken.None);
 
-            await Task.Delay(10000);
             _output.WriteLine("Send load test scenario to Consumer.");
             await _consumerHttpClient.LoadTestScenario(fileContent, CancellationToken.None);
-
-            await Task.Delay(10000);
 
             var request = new StartPlaybackRequest()
             {

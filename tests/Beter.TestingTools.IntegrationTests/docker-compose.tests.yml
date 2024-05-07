@@ -7,6 +7,12 @@ services:
     container_name: kafka
     networks: 
       - testing-tools
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z kafka 9092"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 5s
     ports:
       - "9092:9092"
       - "9101:9101"
@@ -76,6 +82,12 @@ services:
     container_name: beter.testing-tool.generator
     networks: 
       - testing-tools
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://beter.testing-tool.generator"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
@@ -97,7 +109,13 @@ services:
       dockerfile: src/Hosts/Beter.TestingTools.Emulator/Dockerfile
     container_name: beter.testing-tool.emulator
     networks: 
-      - testing-tools
+      - testing-tools 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://beter.testing-tool.emulator"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80,
@@ -125,6 +143,12 @@ services:
     container_name: beter.testing-tool.consumer
     networks: 
       - testing-tools
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://beter.testing-tool.consumer"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
