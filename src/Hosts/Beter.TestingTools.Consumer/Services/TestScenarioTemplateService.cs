@@ -10,32 +10,42 @@ namespace Beter.TestingTools.Consumer.Services
     public sealed class TestScenarioTemplateService : ITestScenarioTemplateService
     {
         private TestScenarioTemplate _template;
+        private static object _lock = new();
 
         public JsonNode GetNext(HubKind hubKind)
         {
-            var template = GetTemplate();
-            if (!template.Messages.TryGetValue(hubKind, out var queue))
+            lock (_lock)
             {
-                throw new ArgumentException($"Cannot get messages from channel: {hubKind}.");
-            }
+                var template = GetTemplate();
+                if (!template.Messages.TryGetValue(hubKind, out var queue))
+                {
+                    throw new ArgumentException($"Cannot get messages from channel: {hubKind}.");
+                }
 
-            return queue.Dequeue();
+                return queue.Dequeue();
+            }
         }
 
         public TestScenarioTemplate GetTemplate()
         {
-            return _template;
+            lock (_lock)
+            {
+                return _template;
+            }
         }
 
         public TestScenarioTemplate SetMissmatchItem(HubKind hubKind, string expected, string actual)
         {
-            var template = GetTemplate();
-            if (template.MissmatchItems.TryGetValue(hubKind, out var items))
-                items.Add(new TestScenarioTemplateMissmatchItem(expected, actual));
-            else
-                template.MissmatchItems.Add(hubKind, new List<TestScenarioTemplateMissmatchItem>() { new TestScenarioTemplateMissmatchItem(expected, actual) });
+            lock (_lock)
+            {
+                var template = GetTemplate();
+                if (template.MissmatchItems.TryGetValue(hubKind, out var items))
+                    items.Add(new TestScenarioTemplateMissmatchItem(expected, actual));
+                else
+                    template.MissmatchItems.Add(hubKind, new List<TestScenarioTemplateMissmatchItem>() { new TestScenarioTemplateMissmatchItem(expected, actual) });
 
-            return template;
+                return template;
+            }
         }
 
         public TestScenarioTemplate SetTemplate(TestScenario testScenario)
@@ -52,16 +62,19 @@ namespace Beter.TestingTools.Consumer.Services
                 MessageTypes.SystemEvent
             };
 
-            var messages = testScenario.Messages
-                .Where(x => x.Channel != null && allMessageTypes.Contains(x.MessageType))
-                .GroupBy(x => x.Channel, x => x.Value)
-                .ToDictionary(
-                    x => HubEnumHelper.ToHub(x.Key),
-                    x => new Queue<JsonNode>(x));
+            lock (_lock)
+            {
+                var messages = testScenario.Messages
+                    .Where(x => x.Channel != null && allMessageTypes.Contains(x.MessageType))
+                    .GroupBy(x => x.Channel, x => x.Value)
+                    .ToDictionary(
+                        x => HubEnumHelper.ToHub(x.Key),
+                        x => new Queue<JsonNode>(x));
 
-            _template = new TestScenarioTemplate { Messages = messages };
+                _template = new TestScenarioTemplate { Messages = messages };
 
-            return _template;
+                return _template;
+            }
         }
     }
 }

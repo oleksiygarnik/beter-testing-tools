@@ -40,7 +40,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - FeatureManagement__ConsumeByTemplate=true
+      - FeatureManagement__ConsumeByTemplate=false
       - Publisher__BootstrapServers=kafka:29092
       - Publisher__SecurityProtocol=0
       - Publisher__AllowAutoCreateTopics=true

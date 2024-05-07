@@ -7,12 +7,6 @@ services:
     container_name: kafka
     networks: 
       - testing-tools
-    healthcheck:
-      test: ["CMD-SHELL", "nc -z kafka 9092"]
-      interval: 2s
-      timeout: 5s
-      retries: 30
-      start_period: 5s
     ports:
       - "9092:9092"
       - "9101:9101"
@@ -33,6 +27,12 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
       KAFKA_LOG_DIRS: '/var/lib/kafka/data'
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qc'
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z kafka 9092"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 5s
     volumes:
       - "kafka-broker-data:/var/lib/kafka/data"
 
@@ -82,12 +82,6 @@ services:
     container_name: beter.testing-tool.generator
     networks: 
       - testing-tools
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://beter.testing-tool.generator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
@@ -97,6 +91,12 @@ services:
       - Publisher__SecurityProtocol=0
       - Publisher__AllowAutoCreateTopics=true
       - Heartbeat__IntervalInSeconds=5
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://beter.testing-tool.generator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     ports:
        - 51857:80
     depends_on:
@@ -110,12 +110,6 @@ services:
     container_name: beter.testing-tool.emulator
     networks: 
       - testing-tools
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://beter.testing-tool.emulator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80,
@@ -130,6 +124,12 @@ services:
       - SignalR__FeedScoreboardEndpoint=/scoreboard
       - SignalR__FeedIncidentEndpoint=/incident
       - SignalR__TtlForHeartbetRecord=00:00:05
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://beter.testing-tool.emulator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     ports:
        - 51859:80
     depends_on:
@@ -143,12 +143,6 @@ services:
     container_name: beter.testing-tool.consumer
     networks: 
       - testing-tools
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://beter.testing-tool.consumer/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
@@ -163,6 +157,12 @@ services:
       - FeedService__SnapshotBatchSize=0
       - FeedService__ReconnectionWaitSeconds=0.5
       - FeedService__DestinationTopicName=feed-messages-test
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://beter.testing-tool.consumer/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     ports:
        - 51860:80
     depends_on:

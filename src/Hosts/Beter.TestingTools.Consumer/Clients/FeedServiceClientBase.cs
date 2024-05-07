@@ -196,7 +196,14 @@ public abstract class FeedServiceClientBase<T> : IFeedClient where T : class, IF
 
     private static bool AreMessagesEqual<TValue>(TValue expectedMessage, TValue actualMessage) where TValue : class
     {
-        return TestScenarioMessagesComparer.Compare(expectedMessage, actualMessage);
+        try
+        {
+            return TestScenarioMessagesComparer.Compare(expectedMessage, actualMessage);
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private void LogMessageMismatch<TValue>(TValue expectedMessage, TValue actualMessage, HubKind hubKind)

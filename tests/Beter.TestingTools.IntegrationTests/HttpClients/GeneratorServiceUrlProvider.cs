@@ -14,9 +14,7 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients
         }
 
         public Uri BaseUrl() => _baseUrl;
-
         public Uri LoadTestScenario() => new Uri(_baseUrl, "/api/test-scenarios/load");
-
         public Uri RunTestScenario() => new Uri(_baseUrl, "/api/test-scenarios/run");
     }
 }

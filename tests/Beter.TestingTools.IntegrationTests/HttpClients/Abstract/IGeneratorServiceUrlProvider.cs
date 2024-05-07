@@ -3,9 +3,7 @@
     public interface IGeneratorServiceUrlProvider
     {
         Uri BaseUrl();
-
         Uri LoadTestScenario();
-
         Uri RunTestScenario();
     }
 }

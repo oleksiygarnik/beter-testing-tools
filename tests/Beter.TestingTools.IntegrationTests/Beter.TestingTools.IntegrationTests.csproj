@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
-    <PackageReference Include="Divergic.Logging.Xunit" Version="4.3.1" />
     <PackageReference Include="Ductus.FluentDocker" Version="2.10.59" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.0" />

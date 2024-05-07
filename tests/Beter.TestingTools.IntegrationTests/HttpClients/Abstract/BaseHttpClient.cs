@@ -1,10 +1,10 @@
 ﻿using Beter.TestingTools.Generator.Infrastructure.Services.FeedConnections;
+using Beter.TestingTools.IntegrationTests.HttpClients.Extensions;
 using Polly.Extensions.Http;
 using Polly;
+using System.Net;
 using System.Text;
 using System.Text.Json;
-using System.Net;
-using Beter.TestingTools.IntegrationTests.Helpers;
 
 namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
 {
@@ -47,7 +47,7 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
         private static void ThrowBadRequestException(Uri requestUri) =>
             throw new BadRequestException($"Unknown error occured during processing uri: {requestUri}.");
 
-        private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy() => 
+        private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy() =>
             HttpPolicyExtensions
                 .HandleTransientHttpError()
                 .OrResult(msg => msg.StatusCode == HttpStatusCode.NotFound)

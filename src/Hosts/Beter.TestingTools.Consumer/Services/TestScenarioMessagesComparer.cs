@@ -5,6 +5,8 @@ using Beter.TestingTools.Models.Scoreboards;
 using Beter.TestingTools.Models.TimeTableItems;
 using Beter.TestingTools.Models.TradingInfos;
 using KellermanSoftware.CompareNetObjects;
+using KellermanSoftware.CompareNetObjects.TypeComparers;
+using System.Text.Json;
 
 namespace Beter.TestingTools.Consumer.Services
 {
@@ -35,6 +37,10 @@ namespace Beter.TestingTools.Consumer.Services
             compare.Config.IgnoreProperty<TradingInfoModel>(x => x.Id);
             compare.Config.IgnoreProperty<TradingInfoModel>(x => x.Timestamp);
             compare.Config.IgnoreProperty<TradingInfoModel>(x => x.Offset);
+            compare.Config.CustomPropertyComparer<OutcomeModel>(
+                x => x.Prices,
+                new CustomComparer<Dictionary<string, object>, Dictionary<string, object>>(
+                    (item1, item2) => JsonSerializer.Serialize(item1).Equals(JsonSerializer.Serialize(item2))));
 
             compare.Config.IgnoreProperty<TimeTableItemModel>(x => x.Id);
             compare.Config.IgnoreProperty<TimeTableItemModel>(x => x.Timestamp);
