@@ -18,7 +18,7 @@
 						[Beter.TestingTools.Emulator]Beter.TestingTools.Emulator.SignalR.Settings*,
 						[Beter.TestingTools.Emulator]Beter.TestingTools.Emulator.SignalR.Settings*,
 						[Beter.TestingTools.Emulator]Beter.TestingTools.Emulator.Startup,
-						[Beter.TestingTools.Emulator]Program
+						[Beter.TestingTools.Emulator]Beter.TestingTools.Emulator.Program
 					</Exclude>
 				</Configuration>
 			</DataCollector>

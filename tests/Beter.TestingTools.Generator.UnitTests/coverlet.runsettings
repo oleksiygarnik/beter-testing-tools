@@ -16,7 +16,7 @@
 						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Host*,
 						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Infrastructure.Extensions*,
 						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Startup,
-						[Beter.TestingTools.Generator]Program
+						[Beter.TestingTools.Generator]Beter.TestingTools.Generator.Program
 					</Exclude>
 				</Configuration>
 			</DataCollector>
