@@ -1,4 +1,6 @@
 ﻿using Beter.TestingTools.Generator.Infrastructure.Services.FeedConnections;
+using Polly.Extensions.Http;
+using Polly;
 using System.Text;
 using System.Text.Json;
 
@@ -15,7 +17,13 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
 
         protected async Task<string> SendRequest(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var response = await _httpClient.SendAsync(request, cancellationToken);
+            var retryPolicy = GetRetryPolicy();
+            var circuitBreakerPolicy = GetCircuitBreakerPolicy();
+
+            var response = await retryPolicy
+                .WrapAsync(circuitBreakerPolicy)
+                .ExecuteAsync(() => _httpClient.SendAsync(request, cancellationToken));
+
             if (!response.IsSuccessStatusCode)
             {
                 ThrowBadRequestException(request.RequestUri);
@@ -31,5 +39,16 @@ namespace Beter.TestingTools.IntegrationTests.HttpClients.Abstract
 
         private static void ThrowBadRequestException(Uri requestUri) =>
             throw new BadRequestException($"Unknown error occured during processing uri: {requestUri}.");
+
+        private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy() => 
+            HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+                .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+
+        private static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy() =>
+            HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
     }
 }
