@@ -39,8 +39,6 @@ namespace Beter.TestingTools.IntegrationTests.Tests
         {
             var file = Path.Combine(Directory.GetCurrentDirectory(), (TemplateString)"docker-compose.tests.yml");
 
-            _output.WriteLine("Try build docker-compose.tests.yml.");
-
             return new DockerComposeCompositeService(
                 DockerHost,
                 new DockerComposeConfig
