@@ -39,6 +39,8 @@ namespace Beter.TestingTools.IntegrationTests.Tests
         {
             var file = Path.Combine(Directory.GetCurrentDirectory(), (TemplateString)"docker-compose.tests.yml");
 
+            _output.WriteLine("Try build docker-compose.tests.yml.");
+
             return new DockerComposeCompositeService(
                 DockerHost,
                 new DockerComposeConfig
@@ -61,8 +63,11 @@ namespace Beter.TestingTools.IntegrationTests.Tests
             _output.WriteLine("Send load test scenario to Generator.");
             await _generatorHttpClient.LoadTestScenario(fileContent, CancellationToken.None);
 
+            await Task.Delay(10000);
             _output.WriteLine("Send load test scenario to Consumer.");
             await _consumerHttpClient.LoadTestScenario(fileContent, CancellationToken.None);
+
+            await Task.Delay(10000);
 
             var request = new StartPlaybackRequest()
             {
@@ -105,5 +110,4 @@ namespace Beter.TestingTools.IntegrationTests.Tests
             Console.SetOut(_originalOut);
         }
     }
-
 }
