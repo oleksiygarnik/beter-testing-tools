@@ -6,16 +6,19 @@ using Ductus.FluentDocker.Model.Common;
 using Ductus.FluentDocker.Model.Compose;
 using Ductus.FluentDocker.Services;
 using Ductus.FluentDocker.Services.Impl;
+using Xunit.Abstractions;
 
 namespace Beter.TestingTools.IntegrationTests.Tests
 {
     public class End2EndTests : DockerComposeTestBase
     {
+        private readonly ITestOutputHelper _output;
         private readonly IConsumerServiceHttpClient _consumerHttpClient;
         private readonly IGeneratorServiceHttpClient _generatorHttpClient;
 
-        public End2EndTests(IConsumerServiceHttpClient consumerHttpClient, IGeneratorServiceHttpClient generatorHttpClient)
+        public End2EndTests(ITestOutputHelper output, IConsumerServiceHttpClient consumerHttpClient, IGeneratorServiceHttpClient generatorHttpClient)
         {
+            _output = output ?? throw new ArgumentNullException(nameof(output));
             _consumerHttpClient = consumerHttpClient ?? throw new ArgumentNullException(nameof(consumerHttpClient));
             _generatorHttpClient = generatorHttpClient ?? throw new ArgumentNullException(nameof(generatorHttpClient));
         }
@@ -63,6 +66,8 @@ namespace Beter.TestingTools.IntegrationTests.Tests
             await WaitHelper.WaitForCondition(async () =>
             {
                 var response = await _consumerHttpClient.GetTemplate();
+
+                _output.WriteLine($"Count: {response.Messages.SelectMany(x => x.Value).Count()}");
 
                 return response.IsProcessed && !response.IsFailed;
             });
