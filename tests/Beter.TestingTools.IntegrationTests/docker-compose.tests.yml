@@ -98,7 +98,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s
+      start_period: 10s
     ports:
        - 51857:80
     depends_on:
@@ -133,7 +133,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s
+      start_period: 10s
     ports:
        - 51859:80
     depends_on:
@@ -168,14 +168,14 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s
+      start_period: 10s
     ports:
        - 51860:80
     depends_on:
         kafka:
             condition: service_healthy
         beter.testingtool.emulator:
-            condition: service_healthy
+            condition: service_started
         init-kafka:
             condition: service_completed_successfully
 
