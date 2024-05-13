@@ -50,9 +50,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="docker-compose.tests.override.yml">
-      <DependentUpon>docker-compose.tests.yml</DependentUpon>
-    </None>
     <None Update="docker-compose.tests.yml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -40,9 +40,6 @@ services:
     image: confluentinc/cp-kafka:7.4.1
     hostname: init-kafka
     container_name: init-kafka
-    depends_on:
-        kafka:
-            condition: service_healthy
     networks: 
       - testing-tools
     entrypoint: [ '/bin/sh', '-c' ]
@@ -66,9 +63,6 @@ services:
       - testing-tools
     ports:
       - "${KAFKA_UI_PORT:-8080}:8080"
-    depends_on:
-        kafka:
-            condition: service_healthy
     environment:
       KAFKA_CLUSTERS_0_NAME: feed_testing_tools
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
@@ -101,11 +95,6 @@ services:
       start_period: 10s
     ports:
        - 51857:80
-    depends_on:
-        kafka:
-            condition: service_healthy
-        init-kafka:
-            condition: service_completed_successfully
 
   beter.testingtool.emulator:
     build:
@@ -136,11 +125,6 @@ services:
       start_period: 10s
     ports:
        - 51859:80
-    depends_on:
-        kafka:
-            condition: service_healthy
-        init-kafka:
-            condition: service_completed_successfully
 
   beter.testingtool.consumer:
     build:
@@ -171,13 +155,6 @@ services:
       start_period: 10s
     ports:
        - 51860:80
-    depends_on:
-        kafka:
-            condition: service_healthy
-        beter.testingtool.emulator:
-            condition: service_started
-        init-kafka:
-            condition: service_completed_successfully
 
 networks: 
   testing-tools:
