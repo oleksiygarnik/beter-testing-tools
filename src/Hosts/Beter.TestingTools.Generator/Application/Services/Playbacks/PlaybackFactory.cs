@@ -72,9 +72,10 @@ public sealed class PlaybackFactory : IPlaybackFactory
             timeOffsetAfterFirstTimetableMessageInSecounds,
             accelerationFactor);
 
-        _manager.ApplyTransformation(context, messages);
+        var copyMessages = messages.Select(m => m with { }).ToList();
+        _manager.ApplyTransformation(context, copyMessages);
 
-        var playbackItems = messages.Select(message => new PlaybackItem
+        var playbackItems = copyMessages.Select(message => new PlaybackItem
         {
             InternalId = Guid.NewGuid().ToString(),
             PlaybackId = playbackId,

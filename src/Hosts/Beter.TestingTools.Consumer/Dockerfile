@@ -2,6 +2,10 @@ ARG DOTNET_SDK_IMAGE=mcr.microsoft.com/dotnet/sdk:7.0
 ARG DOTNET_RUNTIME_IMAGE=mcr.microsoft.com/dotnet/aspnet:7.0.14-bullseye-slim
 
 FROM $DOTNET_RUNTIME_IMAGE AS base
+
+# Install curl
+RUN apt-get update && apt-get install -y curl
+
 WORKDIR /app
 EXPOSE 80
 

@@ -26,11 +26,4 @@
       <ProjectReference Include="..\..\Common\Beter.TestingTools.Common\Beter.TestingTools.Common.csproj" />
       <ProjectReference Include="..\..\Common\Beter.TestingTools.Hosting\Beter.TestingTools.Hosting.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Content Update="Resources\1.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-    </ItemGroup>
-
 </Project>

@@ -1,9 +1,11 @@
 ﻿using Beter.TestingTools.Common.Constants;
+using Beter.TestingTools.Consumer.Consumers;
 using Beter.TestingTools.Consumer.Models;
 using Beter.TestingTools.Consumer.Options;
 using Beter.TestingTools.Models;
 using Beter.TestingTools.Models.GlobalEvents;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 
 namespace Beter.TestingTools.Consumer.Producers;
@@ -23,7 +25,7 @@ public sealed class FeedMessageProducer<TModel> : IFeedMessageProducer<TModel> w
         IProducerTransport<FeedMessageModel<IEnumerable<GlobalMessageModel>>> globalMessageProducerTransport,
         IProducerTransport<FeedMessageModel<SubscriptionsRemovedModel>> subscriptionsRemovedProducerTransport)
     {
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _logger = logger ?? NullLogger<FeedMessageProducer<TModel>>.Instance;
         _modelProducerTransport = modelProducerTransport ?? throw new ArgumentNullException(nameof(modelProducerTransport));
         _globalMessageProducerTransport = globalMessageProducerTransport ?? throw new ArgumentNullException(nameof(globalMessageProducerTransport));
         _subscriptionsRemovedProducerTransport = subscriptionsRemovedProducerTransport ?? throw new ArgumentNullException(nameof(subscriptionsRemovedProducerTransport));

@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using Beter.TestingTools.Common.Constants;
+using Beter.TestingTools.Common.Serialization;
 using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.Infrastructure.Options;
 using Beter.TestingTools.Generator.Infrastructure.Services;
@@ -37,7 +38,7 @@ namespace Beter.TestingTools.Generator.UnitTests.Infrastructure.Services
                     { HeaderNames.MessageType, Encoding.UTF8.GetBytes(MessageTypes.Heartbeat) },
                     { HeaderNames.PlaybackId, Encoding.UTF8.GetBytes("heartbeat-playback") }
                 },
-                Value = JsonSerializer.Serialize(model)
+                Value = JsonHubSerializer.Serialize(model)
             };
 
             var producer = SetupProducer(topic, expectedMessage);

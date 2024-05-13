@@ -40,7 +40,7 @@ namespace Beter.TestingTools.IntegrationTests.Tests
         }
 
         [Fact]
-        public async Task Generate_And_Emulate_Data_And_Consume_This_Data()
+        public async Task GenerateAndConsumeData_Successfully()
         {
             //Arrange
             var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "Resources/1.json");

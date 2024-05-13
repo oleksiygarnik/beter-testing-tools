@@ -4,12 +4,14 @@ using Beter.TestingTools.Models.TimeTableItems;
 using Beter.TestingTools.Models.TradingInfos;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.SignalR;
-using System.Text.Json.Serialization;
+using MessagePack;
+using MessagePack.Resolvers;
 using Beter.TestingTools.Emulator.SignalR.Settings;
 using Beter.TestingTools.Emulator.SignalR.Filters;
 using Beter.TestingTools.Emulator.Publishers.Extensions;
 using Beter.TestingTools.Emulator.SignalR.Hubs.V1;
 using Beter.TestingTools.Emulator.SignalR.Hubs;
+using System.Text.Json.Serialization;
 
 
 namespace Beter.TestingTools.Emulator.Publishers.Extensions;
@@ -53,7 +55,9 @@ static internal class ServiceCollectionExtensions
         {
             o.AddPolicy("SignalR", delegate (CorsPolicyBuilder builder)
             {
-                builder.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed((_) => true)
+                builder.AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed((_) => true)
                     .AllowCredentials();
             });
         });
@@ -61,10 +65,14 @@ static internal class ServiceCollectionExtensions
         var signalRServerBuilder = services.AddSignalR(delegate (HubOptions options)
         {
             options.EnableDetailedErrors = true;
-            options.AddFilter<SignalRValidationFilter>(); //validate api key for connection
+            options.AddFilter<SignalRValidationFilter>();
         }).AddJsonProtocol(delegate (JsonHubProtocolOptions cfg)
         {
             cfg.PayloadSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        }).AddMessagePackProtocol(static options =>
+        {
+            StaticCompositeResolver.Instance.Register(ContractlessStandardResolver.Instance);
+            options.SerializerOptions = MessagePackSerializerOptions.Standard.WithResolver(StaticCompositeResolver.Instance);
         });
 
         return services;

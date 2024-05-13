@@ -1,4 +1,6 @@
-﻿namespace Beter.TestingTools.Emulator.Messaging;
+﻿using Microsoft.Extensions.Logging.Abstractions;
+
+namespace Beter.TestingTools.Emulator.Messaging;
 
 public class GeneratorMessagesListener : BackgroundService
 {
@@ -8,7 +10,7 @@ public class GeneratorMessagesListener : BackgroundService
     public GeneratorMessagesListener(IGeneratorMessagesConsumer consumer, ILogger<GeneratorMessagesListener> logger)
     {
         _consumer = consumer ?? throw new ArgumentNullException(nameof(consumer));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _logger = logger ?? NullLogger<GeneratorMessagesListener>.Instance;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)

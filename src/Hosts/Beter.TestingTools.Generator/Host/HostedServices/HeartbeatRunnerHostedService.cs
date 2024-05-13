@@ -5,6 +5,7 @@ using Beter.TestingTools.Generator.Host.Options;
 using Beter.TestingTools.Generator.Application.Services.Heartbeats;
 using Beter.TestingTools.Generator.Application.Extensions;
 using Beter.TestingTools.Generator.Application.Contracts.Heartbeats;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Beter.TestingTools.Generator.Host.HostedServices;
 
@@ -21,7 +22,7 @@ public class HeartbeatRunnerHostedService : BackgroundService
     {
         _timerInterval = TimeSpan.FromSeconds(heartbeatOptions?.Value?.IntervalInSeconds ?? _defaultTimerInterval.TotalSeconds);
         _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _logger = logger ?? NullLogger<HeartbeatRunnerHostedService>.Instance;
         _serviceScopeFactory = serviceScopeFactory ?? throw new ArgumentNullException(nameof(serviceScopeFactory));
     }
 

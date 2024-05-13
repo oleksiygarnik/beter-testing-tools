@@ -11,7 +11,7 @@ namespace Beter.TestingTools.Generator.UnitTests.Application.Services.Playbacks.
 
         public FeedMessageWrapperTests()
         {
-            var message = JsonNode.Parse("{\"Id\":\"1\"}");
+            var message = JsonNode.Parse("{\"Id\":\"1\",\"MsgType\":10,\"SportId\":null,\"Offset\":10}");
             _wrapper = new FeedMessageWrapper(message);
         }
 

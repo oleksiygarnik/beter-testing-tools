@@ -3,6 +3,7 @@ using Beter.TestingTools.Models;
 using Beter.TestingTools.Emulator.SignalR.Helpers;
 using Beter.TestingTools.Emulator.SignalR.Hubs;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Beter.TestingTools.Emulator.Publishers;
 
@@ -16,8 +17,8 @@ public class FeedMessagePublisher<THub, TModel, THubInterface> : IMessagePublish
     public HubKind Hub { get; set; }
     public FeedMessagePublisher(IHubContext<THub, THubInterface> hub, ILogger<FeedMessagePublisher<THub, TModel, THubInterface>> logger)
     {
-        _hub = hub;
-        _logger = logger;
+        _hub = hub ?? throw new ArgumentNullException(nameof(hub));
+        _logger = logger ?? NullLogger<FeedMessagePublisher<THub, TModel, THubInterface>>.Instance;
         Hub = HubHelper.ToHub<TModel>();
     }
 

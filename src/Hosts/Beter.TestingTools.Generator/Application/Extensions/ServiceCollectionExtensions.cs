@@ -1,5 +1,4 @@
-﻿using Beter.TestingTools.Generator.Infrastructure.Repositories;
-using Beter.TestingTools.Generator.Application.Contracts;
+﻿using Beter.TestingTools.Generator.Application.Contracts;
 using Beter.TestingTools.Generator.Application.Contracts.Heartbeats;
 using Beter.TestingTools.Generator.Application.Contracts.Playbacks;
 using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
@@ -13,7 +12,8 @@ using Beter.TestingTools.Generator.Application.Services.TestScenarios.MessageHan
 using Beter.TestingTools.Generator.Domain.TestScenarios;
 using Beter.TestingTools.Generator.Host.HostedServices;
 using Beter.TestingTools.Generator.Host.Options;
-using System.Diagnostics.CodeAnalysis;
+using Beter.TestingTools.Generator.Infrastructure.Repositories;
+using Beter.TestingTools.Generator.Scripts;
 
 namespace Beter.TestingTools.Generator.Application.Extensions;
 
@@ -29,6 +29,7 @@ static internal class ServiceCollectionExtensions
 
     private static IServiceCollection AddTestScenariosDependency(this IServiceCollection services)
     {
+        services.AddSingleton<IExecutableScript, TranformToFeedSerializationFormatScript>();
         services.AddSingleton<ITestScenarioMessageHandlerResolver, TestScenarioMessageHandlerResolver>();
         services.AddSingleton<ITestScenarioMessageHandler, SteeringCommandMessageHandler>();
         services.AddSingleton<ITestScenarioMessageHandler, FeedMessageHandler>();

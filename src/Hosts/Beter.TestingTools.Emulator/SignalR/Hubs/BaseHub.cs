@@ -3,9 +3,11 @@ using Beter.TestingTools.Common.Enums;
 using Beter.TestingTools.Common.Models;
 using Beter.TestingTools.Emulator.Publishers;
 using Beter.TestingTools.Emulator.Services;
+using Beter.TestingTools.Emulator.SignalR.Filters;
 using Beter.TestingTools.Emulator.SignalR.Helpers;
 using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Beter.TestingTools.Emulator.SignalR.Hubs;
 
@@ -22,7 +24,7 @@ public class BaseHub<T, THubInterface> : Hub<THubInterface>, IHubIdentity where 
         _hubKind = HubHelper.ToHub<T>();
         _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
         _connectionManager = connectionManager ?? throw new ArgumentNullException(nameof(connectionManager));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _logger = logger ?? NullLogger<BaseHub<T, THubInterface>>.Instance;
     }
 
     public HubKind Hub => HubHelper.ToHub<T>();

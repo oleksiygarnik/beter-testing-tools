@@ -1,6 +1,7 @@
 ﻿using Beter.TestingTools.Common.Constants;
 using Beter.TestingTools.Models;
 using System.Text.Json.Nodes;
+using Beter.TestingTools.Common.Extensions;
 
 namespace Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations.Helpers;
 
@@ -15,25 +16,25 @@ public record FeedMessageWrapper : IFeedMessage, IIdentityModel
 
     public string Id
     {
-        get => _message[MessageProperties.Id].GetValue<string>();
-        set => _message[MessageProperties.Id] = value;
+        get => _message.GetValue<string>(MessageProperties.Id);
+        set => _message.SetValue(MessageProperties.Id, value);
     }
 
     public int MsgType
     {
-        get => _message[MessageProperties.MsgType].GetValue<int>();
-        set => _message[MessageProperties.MsgType] = value;
+        get => _message.GetValue<int>(MessageProperties.MsgType);
+        set => _message.SetValue(MessageProperties.MsgType, value);
     }
 
     public long Offset
     {
-        get => _message[MessageProperties.Offset].GetValue<long>();
-        set => _message[MessageProperties.Offset] = value;
+        get => _message.GetValue<long>(MessageProperties.Offset);
+        set => _message.SetValue(MessageProperties.Offset, value);
     }
 
     public int? SportId
     {
-        get => _message[MessageProperties.SportId].GetValue<int?>();
-        set => _message[MessageProperties.SportId] = value;
+        get => _message.GetValue<int?>(MessageProperties.SportId);
+        set => _message.SetValue(MessageProperties.SportId, value);
     }
 }

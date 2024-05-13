@@ -6,9 +6,9 @@ using Beter.TestingTools.Models.Scoreboards;
 using Beter.TestingTools.Models.TimeTableItems;
 using Beter.TestingTools.Models.TradingInfos;
 using Confluent.Kafka;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Beter.TestingTools.Emulator.Messaging.Extensions;
+using Microsoft.Extensions.Logging.Abstractions;
+using Beter.TestingTools.Common.Serialization;
 
 namespace Beter.TestingTools.Emulator.Messaging;
 
@@ -20,7 +20,7 @@ public sealed class ConsumeMessageConverter : IConsumeMessageConverter
 
     public ConsumeMessageConverter(ILogger<ConsumeMessageConverter> logger)
     {
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _logger = logger ?? NullLogger<ConsumeMessageConverter>.Instance;
     }
 
     static ConsumeMessageConverter()
@@ -63,14 +63,7 @@ public sealed class ConsumeMessageConverter : IConsumeMessageConverter
 
         _logger.LogInformation($"Body: {messageValue}");
 
-        var serializerOptions = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            Converters = { new JsonStringEnumConverter() }
-        };
-        var messageTypedInstance = JsonSerializer.Deserialize(messageValue, messageType, serializerOptions);
-
+        var messageTypedInstance = JsonHubSerializer.Deserialize(messageValue, messageType);
         var messageContext = new ConsumeMessageContext
         {
             MessageHeaders = headers,

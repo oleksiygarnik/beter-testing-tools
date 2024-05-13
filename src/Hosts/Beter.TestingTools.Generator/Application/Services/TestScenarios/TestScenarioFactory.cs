@@ -1,4 +1,5 @@
-﻿using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
+﻿using Beter.TestingTools.Common.Serialization;
+using Beter.TestingTools.Generator.Application.Contracts.TestScenarios;
 using Beter.TestingTools.Generator.Domain.TestScenarios;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
@@ -15,7 +16,7 @@ public sealed class TestScenarioFactory : ITestScenarioFactory
 
         try
         {
-            var testScenario = JsonSerializer.Deserialize<TestScenario>(content);
+            var testScenario = JsonHubSerializer.Deserialize<TestScenario>(content);
 
             return testScenario with
             {
@@ -61,11 +62,10 @@ public sealed class TestScenarioFactory : ITestScenarioFactory
             throw new ValidationException("Invalid file name format. File name should be in the format of a number, for example, '1.json'.");
 
         var jsonContent = File.ReadAllText(scenarioPath);
-        var jsonSerializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         try
         {
-            var scenario = JsonSerializer.Deserialize<TestScenario>(jsonContent, jsonSerializerOptions);
+            var scenario = JsonHubSerializer.Deserialize<TestScenario>(jsonContent);
             scenario.SetCaseId(caseId);
 
             return scenario;

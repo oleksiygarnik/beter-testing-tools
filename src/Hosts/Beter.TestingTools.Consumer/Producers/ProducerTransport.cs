@@ -9,9 +9,8 @@ namespace Beter.TestingTools.Consumer.Producers
         private readonly IProducerMessageConverter<T> _producerMessageConverter;
         private readonly IProducer<string, byte[]> _producer;
 
-        public ProducerTransport(IOptions<PublishOptions> publishOptions, IProducerMessageConverter<T> producerMessageConverter, IProducerFactory producerFactory, ILogger<ProducerTransport<T>> logger)
+        public ProducerTransport(IOptions<PublishOptions> publishOptions, IProducerMessageConverter<T> producerMessageConverter, IProducerFactory producerFactory)
         {
-            ArgumentNullException.ThrowIfNull(logger);
             ArgumentNullException.ThrowIfNull(producerFactory);
             ArgumentNullException.ThrowIfNull(publishOptions?.Value);
 

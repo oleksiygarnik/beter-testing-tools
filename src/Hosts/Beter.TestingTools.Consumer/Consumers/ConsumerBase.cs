@@ -1,6 +1,7 @@
 ﻿using Beter.TestingTools.Consumer.Clients;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Beter.TestingTools.Consumer.Consumers;
 
@@ -12,11 +13,8 @@ internal abstract class ConsumerBase<T> : IHostedService
 
     public ConsumerBase(T feedServiceClient, ILogger logger)
     {
-        ArgumentNullException.ThrowIfNull(feedServiceClient);
-        ArgumentNullException.ThrowIfNull(logger);
-
-        _feedServiceClient = feedServiceClient;
-        _logger = logger;
+        _feedServiceClient = feedServiceClient ?? throw new ArgumentNullException(nameof(logger));
+        _logger = logger ?? NullLogger<ConsumerBase<T>>.Instance;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)

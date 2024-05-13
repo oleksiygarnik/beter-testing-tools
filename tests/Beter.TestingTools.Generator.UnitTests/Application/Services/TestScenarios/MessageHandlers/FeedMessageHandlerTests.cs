@@ -40,7 +40,7 @@ namespace Beter.TestingTools.Generator.UnitTests.Application.Services.TestScenar
             var message = new TestScenarioMessage
             {
                 Channel = ChannelNames.Incident,
-                Value = JsonNode.Parse("[{\"Id\":\"matchId\",\"MsgType\":1}]")
+                Value = JsonNode.Parse("[{\"Id\":\"matchId\",\"MsgType\":1,\"Offset\":2}]")
             };
 
             var expectedOffset = Fixture.Create<int>();
@@ -63,7 +63,7 @@ namespace Beter.TestingTools.Generator.UnitTests.Application.Services.TestScenar
             var message = new TestScenarioMessage
             {
                 Channel = ChannelNames.Incident,
-                Value = JsonNode.Parse("[{\"Id\":\"matchId\",\"MsgType\":2}]")
+                Value = JsonNode.Parse("[{\"Id\":\"matchId\",\"MsgType\":2,\"Offset\":2}]")
             };
 
             var expectedOffset = Fixture.Create<int>();
@@ -86,7 +86,7 @@ namespace Beter.TestingTools.Generator.UnitTests.Application.Services.TestScenar
             {
                 MessageType = MessageTypes.Incident,
                 Channel = ChannelNames.Incident,
-                Value = JsonNode.Parse("[{\"MsgType\":2,\"Id\":\"1\"}]")
+                Value = JsonNode.Parse("[{\"MsgType\":2,\"Id\":\"1\",\"Offset\":2}]")
             };
 
             // Act

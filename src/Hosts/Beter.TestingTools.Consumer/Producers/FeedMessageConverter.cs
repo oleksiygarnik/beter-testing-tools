@@ -1,8 +1,8 @@
 ﻿using Beter.TestingTools.Common;
 using Beter.TestingTools.Common.Constants;
+using Beter.TestingTools.Common.Serialization;
 using Beter.TestingTools.Consumer.Models;
 using Confluent.Kafka;
-using Newtonsoft.Json;
 using System.Text;
 
 namespace Beter.TestingTools.Consumer.Producers;
@@ -28,6 +28,6 @@ internal class FeedMessageConverter<TModel> : IProducerMessageConverter<FeedMess
     }
     private static byte[] ConvertData(TModel messages) =>
         Encoding.UTF8.GetBytes(
-            JsonConvert.SerializeObject(messages, Formatting.None));
+            JsonHubSerializer.Serialize(messages));
 }
 

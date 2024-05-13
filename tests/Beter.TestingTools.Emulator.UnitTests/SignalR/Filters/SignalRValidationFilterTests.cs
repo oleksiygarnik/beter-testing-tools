@@ -26,14 +26,6 @@ namespace Beter.TestingTools.Emulator.UnitTests.SignalR.Filters
         }
 
         [Fact]
-        public void Constructor_WithNullLogger_ThrowsArgumentNullException()
-        {
-            // Arrange, Act & Assert
-            Assert.Throws<ArgumentNullException>(
-                () => new SignalRValidationFilter(null));
-        }
-
-        [Fact]
         public async Task OnConnectedAsync_WithValidApiKey_CallsNext()
         {
             // Arrange

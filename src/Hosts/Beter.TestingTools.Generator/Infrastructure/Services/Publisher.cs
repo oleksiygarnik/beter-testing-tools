@@ -3,10 +3,10 @@ using Beter.TestingTools.Models;
 using Confluent.Kafka;
 using Microsoft.Extensions.Options;
 using System.Text;
-using System.Text.Json;
 using Beter.TestingTools.Generator.Application.Contracts;
 using Beter.TestingTools.Generator.Infrastructure.Options;
 using Beter.TestingTools.Generator.Domain.TestScenarios;
+using Beter.TestingTools.Common.Serialization;
 
 namespace Beter.TestingTools.Generator.Infrastructure.Services;
 
@@ -119,7 +119,7 @@ public class Publisher : IPublisher
                 { HeaderNames.MessageChannel, Encoding.UTF8.GetBytes(channel) },
                 { HeaderNames.PlaybackId, Encoding.UTF8.GetBytes(playbackId) }
             },
-            Value = JsonSerializer.Serialize(messages)
+            Value = JsonHubSerializer.Serialize(messages)
         };
     }
 
@@ -134,7 +134,7 @@ public class Publisher : IPublisher
                 { HeaderNames.MessageType, typeAsBytes },
                 { HeaderNames.PlaybackId, Encoding.UTF8.GetBytes(HeartbeatPlaybackId) }
             },
-            Value = JsonSerializer.Serialize(model)
+            Value = JsonHubSerializer.Serialize(model)
         };
     }
 

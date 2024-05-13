@@ -1,5 +1,6 @@
 ﻿using Confluent.Kafka;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Beter.TestingTools.Consumer.Producers
 {
@@ -9,7 +10,7 @@ namespace Beter.TestingTools.Consumer.Producers
 
         public ProducerFactory(ILogger<ProducerFactory> logger)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logger = logger ?? NullLogger<ProducerFactory>.Instance;
         }
 
         public IProducer<TKey, TValue> Create<TKey, TValue>(PublishOptions config)

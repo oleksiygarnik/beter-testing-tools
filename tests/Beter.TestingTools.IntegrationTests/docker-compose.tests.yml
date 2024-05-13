@@ -41,7 +41,8 @@ services:
     hostname: init-kafka
     container_name: init-kafka
     depends_on:
-      - kafka
+        kafka:
+            condition: service_healthy
     networks: 
       - testing-tools
     entrypoint: [ '/bin/sh', '-c' ]
@@ -66,7 +67,8 @@ services:
     ports:
       - "${KAFKA_UI_PORT:-8080}:8080"
     depends_on:
-      - kafka
+        kafka:
+            condition: service_healthy
     environment:
       KAFKA_CLUSTERS_0_NAME: feed_testing_tools
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
@@ -92,7 +94,7 @@ services:
       - Publisher__AllowAutoCreateTopics=true
       - Heartbeat__IntervalInSeconds=5
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://beter.testing-tool.generator/health"]
+      test: curl --fail http://localhost:80/health
       interval: 10s
       timeout: 5s
       retries: 5
@@ -100,8 +102,10 @@ services:
     ports:
        - 51857:80
     depends_on:
-      - kafka
-      - init-kafka
+        kafka:
+            condition: service_healthy
+        init-kafka:
+            condition: service_completed_successfully
 
   beter.testingtool.emulator:
     build:
@@ -125,7 +129,7 @@ services:
       - SignalR__FeedIncidentEndpoint=/incident
       - SignalR__TtlForHeartbetRecord=00:00:05
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://beter.testing-tool.emulator/health"]
+      test: curl --fail http://localhost:80/health
       interval: 10s
       timeout: 5s
       retries: 5
@@ -133,8 +137,10 @@ services:
     ports:
        - 51859:80
     depends_on:
-      - kafka
-      - init-kafka
+        kafka:
+            condition: service_healthy
+        init-kafka:
+            condition: service_completed_successfully
 
   beter.testingtool.consumer:
     build:
@@ -158,7 +164,7 @@ services:
       - FeedService__ReconnectionWaitSeconds=0.5
       - FeedService__DestinationTopicName=feed-messages-test
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://beter.testing-tool.consumer/health"]
+      test: curl --fail http://localhost:80/health
       interval: 10s
       timeout: 5s
       retries: 5
@@ -166,9 +172,12 @@ services:
     ports:
        - 51860:80
     depends_on:
-      - kafka
-      - init-kafka
-      - beter.testingtool.emulator
+        kafka:
+            condition: service_healthy
+        beter.testingtool.emulator:
+            condition: service_healthy
+        init-kafka:
+            condition: service_completed_successfully
 
 networks: 
   testing-tools:

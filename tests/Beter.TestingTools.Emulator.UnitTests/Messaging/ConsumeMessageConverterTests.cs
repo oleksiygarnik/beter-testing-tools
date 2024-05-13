@@ -23,17 +23,6 @@ namespace Beter.TestingTools.Emulator.UnitTests.Messaging
         }
 
         [Fact]
-        public void Constructor_NullLogger_ThrowsArgumentNullException()
-        {
-            // Arrange
-            ILogger<ConsumeMessageConverter> logger = null;
-
-            // Act & Assert
-            Assert.Throws<ArgumentNullException>(
-                () => new ConsumeMessageConverter(logger));
-        }
-
-        [Fact]
         public void CanProcess_MessageWithoutTypeHeader_ReturnsFalse()
         {
             // Arrange

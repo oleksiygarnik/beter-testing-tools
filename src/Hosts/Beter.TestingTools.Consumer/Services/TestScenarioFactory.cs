@@ -1,4 +1,5 @@
-﻿using Beter.TestingTools.Consumer.Domain;
+﻿using Beter.TestingTools.Common.Serialization;
+using Beter.TestingTools.Consumer.Domain;
 using Beter.TestingTools.Consumer.Services.Abstract;
 using System.Text.Json;
 
@@ -13,7 +14,7 @@ namespace Beter.TestingTools.Consumer.Services
 
             try
             {
-                return JsonSerializer.Deserialize<TestScenario>(content);
+                return JsonHubSerializer.Deserialize<TestScenario>(content);
             }
             catch (JsonException e)
             {

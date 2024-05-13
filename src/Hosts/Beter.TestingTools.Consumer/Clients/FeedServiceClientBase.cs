@@ -1,6 +1,7 @@
 ﻿using Beter.TestingTools.Common.Constants;
 using Beter.TestingTools.Common.Enums;
 using Beter.TestingTools.Common.Extensions;
+using Beter.TestingTools.Common.Serialization;
 using Beter.TestingTools.Consumer.Options;
 using Beter.TestingTools.Consumer.Producers;
 using Beter.TestingTools.Consumer.Services;
@@ -8,12 +9,17 @@ using Beter.TestingTools.Consumer.Services.Abstract;
 using Beter.TestingTools.Consumer.Utilities;
 using Beter.TestingTools.Models;
 using Beter.TestingTools.Models.GlobalEvents;
+using MessagePack;
+using MessagePack.Resolvers;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Microsoft.FeatureManagement;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Beter.TestingTools.Consumer.Clients;
 
@@ -39,7 +45,7 @@ public abstract class FeedServiceClientBase<T> : IFeedClient where T : class, IF
         IFeedMessageProducer<T> producer)
     {
         _semaphore = new SemaphoreSlim(1, 1);
-        _logger = logger ?? throw new ArgumentNullException(nameof(producer));
+        _logger = logger ?? NullLogger<FeedServiceClientBase<T>>.Instance;
         _producer = producer ?? throw new ArgumentNullException(nameof(producer));
         _featureManager = featureManager ?? throw new ArgumentNullException(nameof(featureManager));
         _feedServiceOptions = feedServiceOptions.Value ?? throw new ArgumentNullException(nameof(feedServiceOptions));
@@ -82,6 +88,7 @@ public abstract class FeedServiceClientBase<T> : IFeedClient where T : class, IF
                 options.Transports = HttpTransportType.WebSockets;
                 options.SkipNegotiation = _feedServiceOptions.SkipNegotiation;
             })
+            .AddJsonProtocol(x => x.PayloadSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull)
             .WithAutomaticReconnect(new RetryPolicyLoop(_feedServiceOptions.ReconnectionWaitSeconds));
 
         var connection = connectionBuilder.Build();
@@ -180,8 +187,8 @@ public abstract class FeedServiceClientBase<T> : IFeedClient where T : class, IF
             await _semaphore.WaitAsync();
 
             var hubKind = HubEnumHelper.ToHub(Channel);
-            var nextItem = _templateService.GetNext(hubKind).ToJsonString();
-            var expectedMessage = JsonSerializer.Deserialize<TValue>(nextItem);
+            var nextItem = _templateService.GetNext(hubKind);
+            var expectedMessage = JsonHubSerializer.Deserialize<TValue>(nextItem);
 
             if (!AreMessagesEqual(expectedMessage, actualMessage))
             {
@@ -208,8 +215,8 @@ public abstract class FeedServiceClientBase<T> : IFeedClient where T : class, IF
 
     private void LogMessageMismatch<TValue>(TValue expectedMessage, TValue actualMessage, HubKind hubKind)
     {
-        var actual = JsonSerializer.Serialize(actualMessage);
-        var expected = JsonSerializer.Serialize(expectedMessage);
+        var actual = JsonHubSerializer.Serialize(actualMessage);
+        var expected = JsonHubSerializer.Serialize(expectedMessage);
 
         _templateService.SetMissmatchItem(hubKind, expected, actual);
 

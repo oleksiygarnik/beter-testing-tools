@@ -1,6 +1,7 @@
 ﻿using Beter.TestingTools.Emulator.SignalR.Helpers;
 using Beter.TestingTools.Emulator.SignalR.Hubs;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Beter.TestingTools.Emulator.SignalR.Filters;
 
@@ -10,7 +11,7 @@ public sealed class SignalRValidationFilter : IHubFilter
 
     public SignalRValidationFilter(ILogger<SignalRValidationFilter> logger)
     {
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _logger = logger ?? NullLogger<SignalRValidationFilter>.Instance;
     }
 
     public async Task OnConnectedAsync(HubLifetimeContext context, Func<HubLifetimeContext, Task> next)

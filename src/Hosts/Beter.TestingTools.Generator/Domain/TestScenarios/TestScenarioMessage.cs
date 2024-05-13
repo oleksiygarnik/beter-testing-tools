@@ -1,10 +1,10 @@
-﻿using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations.Helpers;
-using System.Text.Json;
+﻿using Beter.TestingTools.Common.Serialization;
+using Beter.TestingTools.Generator.Application.Services.Playbacks.Transformations.Helpers;
 using System.Text.Json.Nodes;
 
 namespace Beter.TestingTools.Generator.Domain.TestScenarios;
 
-public class TestScenarioMessage<TValue>
+public record TestScenarioMessage<TValue>
 {
     public TValue Value { get; set; }
     public string Channel { get; set; }
@@ -12,7 +12,7 @@ public class TestScenarioMessage<TValue>
     public long ScheduledAt { get; set; }
 }
 
-public sealed class TestScenarioMessage : TestScenarioMessage<JsonNode>
+public sealed record TestScenarioMessage : TestScenarioMessage<JsonNode>
 {
     public IEnumerable<FeedMessageWrapper> ToFeedMessages()
     {
@@ -33,7 +33,7 @@ public sealed class TestScenarioMessage : TestScenarioMessage<JsonNode>
         return value;
     }
 
-    public TValue GetValue<TValue>() => Value.Deserialize<TValue>();
+    public TValue GetValue<TValue>() => JsonHubSerializer.Deserialize<TValue>(Value);
 
     private void ChangeValue<TValue>(TValue value)
     {
@@ -42,5 +42,5 @@ public sealed class TestScenarioMessage : TestScenarioMessage<JsonNode>
         Value = Serialize(value);
     }
 
-    private static JsonNode Serialize<TValue>(TValue value) => JsonNode.Parse(JsonSerializer.Serialize(value));
+    private static JsonNode Serialize<TValue>(TValue value) => JsonNode.Parse(JsonHubSerializer.Serialize(value));
 }

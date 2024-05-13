@@ -2,6 +2,7 @@
 using Beter.TestingTools.Emulator.Messaging.Handlers.Abstract;
 using Beter.TestingTools.Emulator.Messaging.Options;
 using Confluent.Kafka;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
 using System.Threading.Tasks.Dataflow;
@@ -31,7 +32,7 @@ public class GeneratorMessagesConsumer : IGeneratorMessagesConsumer
         _consumerConfig = InitConsumerConfig(settings.ConsumerConfig);
         _consumer = InitConsumer();
         _topic = settings.Topics.TestingTools;
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _logger = logger ?? NullLogger<GeneratorMessagesConsumer>.Instance;
         _messageConverter = messageConverter ?? throw new ArgumentNullException(nameof(messageConverter));
         _messageHandlerResolver = messageHandlerResolver ?? throw new ArgumentNullException(nameof(messageHandlerResolver));
     }
