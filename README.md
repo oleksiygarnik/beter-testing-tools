@@ -15,7 +15,7 @@ This repository contains a suite of services designed for testing Beter's Feed s
 To start the feed services, follow these steps:
 1. **Clone the Repository:**
     ```sh
-    git clone https://github.com/your-repo/beter-feed-testing-sandbox.git
+    git clone https://github.com/BETER-CO/beter-feed-testing-sandbox.git
     cd beter-feed-testing-sandbox
     ```
 
