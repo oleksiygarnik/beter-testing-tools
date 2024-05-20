@@ -7,8 +7,6 @@ on:
 
 jobs:
   emulator_push_to_docker_hub:
-    needs: integration-tests
-    if: needs.integration-tests.result == 'success' 
     name: Emulator
     uses: oleksiygarnik/beter-testing-tools/.github/workflows/base-docker-publish.yml@main
     with:
@@ -22,8 +20,6 @@ jobs:
       DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
           
   generator_push_to_docker_hub:
-    needs: integration-tests
-    if: needs.integration-tests.result == 'success' 
     name: Generator
     uses: oleksiygarnik/beter-testing-tools/.github/workflows/base-docker-publish.yml@main
     with:
