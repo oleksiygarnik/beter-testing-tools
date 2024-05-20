@@ -6,17 +6,6 @@ on:
     tags: [ 'v[0-9]*.[0-9]*.[0-9]*' ]
 
 jobs:
-  integration-tests:
-    name: Run Integration Tests 
-    runs-on: ubuntu-latest
-    steps:
-     - name: Checkout Repository
-       uses: actions/checkout@v4
-
-     - name: Run Integration Tests
-       run: |
-          dotnet test tests/Beter.TestingTools.IntegrationTests --logger "console;verbosity=detailed"
-
   emulator_push_to_docker_hub:
     needs: integration-tests
     if: needs.integration-tests.result == 'success' 
