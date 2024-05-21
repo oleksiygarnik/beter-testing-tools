@@ -12,8 +12,8 @@ jobs:
     with:
       project_name: emulator
       image_name: docker.io/silencerdev/testingtools.emulator
-      dockerfile_path: src/Hosts/Beter.TestingTools.Emulator
-      unit_tests_path: tests/Beter.TestingTools.Emulator.UnitTests
+      dockerfile_path: src/Hosts/Beter.Feed.TestingSandbox.Emulator
+      unit_tests_path: tests/Beter.Feed.TestingSandbox.Emulator.UnitTests
       code_coverage_threshold: 75
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -25,8 +25,8 @@ jobs:
     with:
       project_name: generator
       image_name: docker.io/silencerdev/testingtools.generator
-      dockerfile_path: src/Hosts/Beter.TestingTools.Generator
-      unit_tests_path: tests/Beter.TestingTools.Generator.UnitTests
+      dockerfile_path: src/Hosts/Beter.Feed.TestingSandbox.Generator
+      unit_tests_path: tests/Beter.Feed.TestingSandbox.Generator.UnitTests
       code_coverage_threshold: 75
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
