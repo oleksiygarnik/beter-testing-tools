@@ -47,6 +47,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           repository: silencerdev/feed.testingsandbox.emulator
+          readme-filepath: ./doc/RUNNING_APPS.md
         
       - name: Extract Metadata (Tags, Labels) for Docker
         id: meta
