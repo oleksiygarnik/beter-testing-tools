@@ -41,6 +41,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: silencerdev/feed.testingsandbox.emulator
+        
       - name: Extract Metadata (Tags, Labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
